@@ -219,54 +219,70 @@ body{background:var(--bg);color:var(--body);font-size:14px;line-height:1.65;}
 .tco{font-size:11px;color:rgba(255,255,255,0.35);margin-top:2px;}
 
 /* ── Clients ── */
-.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+
 .cgroup{
   background:var(--bg);
   border:1px solid var(--line);
-  border-radius:14px;
+  border-radius:16px;
   overflow:hidden;
-  box-shadow:0 2px 12px rgba(13,27,42,0.06);
-  transition:box-shadow .2s,transform .2s;
+  box-shadow:0 2px 16px rgba(13,27,42,0.05);
+  transition:box-shadow .25s,transform .25s;
 }
-.cgroup:hover{box-shadow:0 6px 24px rgba(26,114,232,0.12);transform:translateY(-2px);}
+.cgroup:hover{
+  box-shadow:0 8px 32px rgba(26,114,232,0.13);
+  transform:translateY(-3px);
+}
+
+/* Header */
 .cgroup-head{
-  display:flex;align-items:center;gap:12px;
-  padding:16px 20px;
-  background:linear-gradient(135deg,var(--cover) 0%,var(--ink2) 100%);
-  border-bottom:3px solid var(--blue);
+  display:flex;align-items:center;gap:14px;
+  padding:18px 20px;
+  background:linear-gradient(130deg,#071525 0%,#0D2A50 100%);
+  border-bottom:2px solid rgba(26,114,232,0.5);
   position:relative;overflow:hidden;
 }
-.cgroup-head::after{
-  content:'';position:absolute;right:-20px;top:-20px;
-  width:80px;height:80px;border-radius:50%;
-  background:rgba(26,179,217,0.08);
+.cgroup-head::before{
+  content:'';position:absolute;
+  right:-24px;bottom:-24px;
+  width:90px;height:90px;border-radius:50%;
+  background:radial-gradient(circle,rgba(26,179,217,0.12) 0%,transparent 70%);
 }
+
+/* Icon box */
 .cg-icon{
-  font-size:24px;line-height:1;flex-shrink:0;
-  width:42px;height:42px;border-radius:10px;
-  background:rgba(255,255,255,0.08);
+  width:44px;height:44px;border-radius:12px;
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.1);
   display:flex;align-items:center;justify-content:center;
+  font-size:22px;line-height:1;flex-shrink:0;
 }
 .cg-info{flex:1;min-width:0;}
-.cg-title{font-size:13.5px;font-weight:800;color:#fff;margin-bottom:3px;line-height:1.3;}
+.cg-title{
+  font-size:13.5px;font-weight:800;color:#fff;
+  margin-bottom:4px;line-height:1.25;
+}
 .cg-country{
-  display:inline-flex;align-items:center;gap:4px;
-  font-size:10px;font-weight:600;color:var(--cyan);
-  letter-spacing:0.5px;text-transform:uppercase;
+  font-size:9.5px;font-weight:700;
+  color:var(--cyan);letter-spacing:1px;text-transform:uppercase;
 }
 .cg-count{display:none;}
-.cgroup-body{padding:14px 20px;}
+
+/* Client list */
+.cgroup-body{padding:8px 0;}
 .cl{
   font-size:12.5px;color:var(--body);
-  padding:6px 0 6px 14px;
-  border-bottom:1px dashed var(--line);
-  line-height:1.4;
-  position:relative;
+  padding:7px 20px 7px 36px;
+  border-bottom:1px solid var(--bg2);
+  line-height:1.4;position:relative;
+  transition:background .15s,color .15s;
 }
+.cl:hover{background:var(--blue-lt);color:var(--blue);}
 .cl::before{
-  content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);
-  width:5px;height:5px;border-radius:50%;
-  background:var(--blue);opacity:0.4;
+  content:'';position:absolute;
+  left:20px;top:50%;transform:translateY(-50%);
+  width:6px;height:6px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--cyan));
 }
 .cl:last-child{border-bottom:none;}
 
@@ -333,6 +349,67 @@ body{background:var(--bg);color:var(--body);font-size:14px;line-height:1.65;}
   .sh-title{font-size:20px;}
   .cgrid{grid-template-columns:repeat(3,1fr);}
 }
+
+/* ── Client Cards (actual HTML classes) ── */
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+
+.ind-group{
+  background:var(--bg);
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 2px 16px rgba(13,27,42,0.06);
+  transition:box-shadow .25s,transform .25s;
+}
+.ind-group:hover{
+  box-shadow:0 8px 32px rgba(26,114,232,0.13);
+  transform:translateY(-3px);
+}
+.ind-group-head{
+  display:flex;align-items:center;gap:14px;
+  padding:16px 20px;
+  background:linear-gradient(130deg,#071525 0%,#0D2A50 100%);
+  border-bottom:2px solid rgba(26,114,232,0.5);
+  position:relative;overflow:hidden;
+}
+.ind-group-head::before{
+  content:'';position:absolute;right:-24px;bottom:-24px;
+  width:90px;height:90px;border-radius:50%;
+  background:radial-gradient(circle,rgba(26,179,217,0.12) 0%,transparent 70%);
+}
+.ind-group-icon{
+  width:44px;height:44px;border-radius:12px;
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;line-height:1;flex-shrink:0;
+}
+.ind-group-info{flex:1;min-width:0;}
+.ind-group-title{
+  font-size:13.5px;font-weight:800;color:#fff;
+  margin-bottom:4px;line-height:1.25;
+}
+.ind-group-country{
+  font-size:9.5px;font-weight:700;
+  color:var(--cyan);letter-spacing:1px;text-transform:uppercase;
+}
+.ind-group-count{display:none;}
+.ind-group-clients{padding:8px 0;}
+.cl-name{
+  font-size:12.5px;color:var(--body);
+  padding:7px 20px 7px 36px;
+  border-bottom:1px solid var(--bg2);
+  line-height:1.4;position:relative;
+  transition:background .15s,color .15s;
+}
+.cl-name:hover{background:var(--blue-lt);color:var(--blue);}
+.cl-name::before{
+  content:'';position:absolute;
+  left:18px;top:50%;transform:translateY(-50%);
+  width:6px;height:6px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--cyan));
+}
+.cl-name:last-child{border-bottom:none;}
 </style>
 </head>
 <body>
@@ -683,16 +760,15 @@ body{background:var(--bg);color:var(--body);font-size:14px;line-height:1.65;}
 
 <!-- CLIENTS -->
 <div class="sec sec-alt">
-  <div class="sh"><span class="sh-lbl">Our Clients</span><h2 class="sh-title">Companies that Trust Blupoint</h2><p class="sh-sub">83+ businesses across 11 industries and 4 countries have chosen Blupoint as their ERP partner.</p></div>
+  <div class="sh"><span class="sh-lbl">Our Clients</span><h2 class="sh-title">Companies that Trust Blupoint</h2><p class="sh-sub">Businesses across 11 industries and 4 countries trust Blupoint as their ERP partner.</p></div>
   <div class="cgrid">
   <div class="ind-group">
     <div class="ind-group-head">
       <div class="ind-group-icon">🏗️</div>
       <div class="ind-group-info">
         <h3 class="ind-group-title">Construction Industry</h3>
-        <span class="ind-group-country">🇵🇰 Pakistan</span>
+        <span class="ind-group-country">Pakistan</span>
       </div>
-      <div class="ind-group-count">5 clients</div>
     </div>
     <div class="ind-group-clients">
       <div class="cl-name">Al Rehman Enterprises (Pvt.) Ltd.</div>
@@ -707,9 +783,8 @@ body{background:var(--bg);color:var(--body);font-size:14px;line-height:1.65;}
       <div class="ind-group-icon">🧴</div>
       <div class="ind-group-info">
         <h3 class="ind-group-title">Ghee &amp; Oil Industry</h3>
-        <span class="ind-group-country">🇵🇰 Pakistan</span>
+        <span class="ind-group-country">Pakistan</span>
       </div>
-      <div class="ind-group-count">8 clients</div>
     </div>
     <div class="ind-group-clients">
       <div class="cl-name">MM Ghee Mills (Pvt.) Ltd.</div>
@@ -727,9 +802,8 @@ body{background:var(--bg);color:var(--body);font-size:14px;line-height:1.65;}
       <div class="ind-group-icon">🧵</div>
       <div class="ind-group-info">
         <h3 class="ind-group-title">Textile Industry</h3>
-        <span class="ind-group-country">🇵🇰 Pakistan</span>
+        <span class="ind-group-country">Pakistan</span>
       </div>
-      <div class="ind-group-count">10 clients</div>
     </div>
     <div class="ind-group-clients">
       <div class="cl-name">Asghar Fabrics (Pvt.) Ltd.</div>
@@ -749,9 +823,8 @@ body{background:var(--bg);color:var(--body);font-size:14px;line-height:1.65;}
       <div class="ind-group-icon">🏥</div>
       <div class="ind-group-info">
         <h3 class="ind-group-title">Hospital &amp; Medicine</h3>
-        <span class="ind-group-country">🇵🇰 Pakistan</span>
+        <span class="ind-group-country">Pakistan</span>
       </div>
-      <div class="ind-group-count">9 clients</div>
     </div>
     <div class="ind-group-clients">
       <div class="cl-name">Al Mustafa Trust Hospital</div>
@@ -770,9 +843,8 @@ body{background:var(--bg);color:var(--body);font-size:14px;line-height:1.65;}
       <div class="ind-group-icon">📦</div>
       <div class="ind-group-info">
         <h3 class="ind-group-title">Packaging Industry</h3>
-        <span class="ind-group-country">🇵🇰 Pakistan</span>
+        <span class="ind-group-country">Pakistan</span>
       </div>
-      <div class="ind-group-count">6 clients</div>
     </div>
     <div class="ind-group-clients">
       <div class="cl-name">Abaan Packages (Pvt.) Ltd.</div>
@@ -788,9 +860,8 @@ body{background:var(--bg);color:var(--body);font-size:14px;line-height:1.65;}
       <div class="ind-group-icon">🛒</div>
       <div class="ind-group-info">
         <h3 class="ind-group-title">Retail &amp; Trading</h3>
-        <span class="ind-group-country">🇵🇰 Pakistan</span>
+        <span class="ind-group-country">Pakistan</span>
       </div>
-      <div class="ind-group-count">12 clients</div>
     </div>
     <div class="ind-group-clients">
       <div class="cl-name">Ajwa Sweet and Bakers</div>
@@ -812,9 +883,8 @@ body{background:var(--bg);color:var(--body);font-size:14px;line-height:1.65;}
       <div class="ind-group-icon">🏠</div>
       <div class="ind-group-info">
         <h3 class="ind-group-title">Property &amp; Housing</h3>
-        <span class="ind-group-country">🇵🇰 Pakistan</span>
+        <span class="ind-group-country">Pakistan</span>
       </div>
-      <div class="ind-group-count">6 clients</div>
     </div>
     <div class="ind-group-clients">
       <div class="cl-name">ARZ313 (Pvt.) Ltd.</div>
@@ -830,9 +900,8 @@ body{background:var(--bg);color:var(--body);font-size:14px;line-height:1.65;}
       <div class="ind-group-icon">⚙️</div>
       <div class="ind-group-info">
         <h3 class="ind-group-title">Brass, Plastic &amp; Aluminum</h3>
-        <span class="ind-group-country">🇵🇰 Pakistan</span>
+        <span class="ind-group-country">Pakistan</span>
       </div>
-      <div class="ind-group-count">7 clients</div>
     </div>
     <div class="ind-group-clients">
       <div class="cl-name">Master Poly Plastic Industry Ltd.</div>
@@ -849,9 +918,8 @@ body{background:var(--bg);color:var(--body);font-size:14px;line-height:1.65;}
       <div class="ind-group-icon">💎</div>
       <div class="ind-group-info">
         <h3 class="ind-group-title">Gold &amp; Diamond Jewelry</h3>
-        <span class="ind-group-country">🇦🇪 UAE</span>
+        <span class="ind-group-country">UAE</span>
       </div>
-      <div class="ind-group-count">3 clients</div>
     </div>
     <div class="ind-group-clients">
       <div class="cl-name">Golden Ocean DMCC</div>
@@ -864,9 +932,8 @@ body{background:var(--bg);color:var(--body);font-size:14px;line-height:1.65;}
       <div class="ind-group-icon">🎓</div>
       <div class="ind-group-info">
         <h3 class="ind-group-title">Schools &amp; Colleges</h3>
-        <span class="ind-group-country">🇵🇰 Pakistan</span>
+        <span class="ind-group-country">Pakistan</span>
       </div>
-      <div class="ind-group-count">3 clients</div>
     </div>
     <div class="ind-group-clients">
       <div class="cl-name">Abassador Grammer School</div>
@@ -876,28 +943,38 @@ body{background:var(--bg);color:var(--body);font-size:14px;line-height:1.65;}
   </div>
   <div class="ind-group">
     <div class="ind-group-head">
-      <div class="ind-group-icon">🌍</div>
+      <div class="ind-group-icon">🇦🇪</div>
       <div class="ind-group-info">
-        <h3 class="ind-group-title">International Clients</h3>
-        <span class="ind-group-country">🇦🇪 UAE · 🇧🇭 Bahrain</span>
+        <h3 class="ind-group-title">UAE Clients</h3>
+        <span class="ind-group-country">UAE</span>
       </div>
-      <div class="ind-group-count">14 clients</div>
     </div>
     <div class="ind-group-clients">
-      <div class="cl-name">International Research Center Ltd.</div>
-          <div class="cl-name">Pacific International</div>
+      <div class="cl-name">White Star Sea General Trading LLC</div>
           <div class="cl-name">Al Farabi Medical Articles &amp; Requisites Trading LLC</div>
           <div class="cl-name">Al Sanabeel Al Thahabiya Foodstuff Trading LLC</div>
           <div class="cl-name">Bifocal General Trading LLC</div>
           <div class="cl-name">Hadara Hotel Management LLC</div>
           <div class="cl-name">Tras Building Material Trading LLC</div>
-          <div class="cl-name">White Star Sea General Trading LLC</div>
           <div class="cl-name">Blue Arrow Foodstuff Trading LLC</div>
           <div class="cl-name">Trizone Electronic Trading LLC</div>
           <div class="cl-name">Dapoco Furniture Trading LLC</div>
           <div class="cl-name">Fenix Heavy Machinery &amp; Equipment Trading LLC</div>
           <div class="cl-name">Sharp Spark General Trading LLC</div>
           <div class="cl-name">Prime Sourcers Raw Material Trading LLC</div>
+    </div>
+  </div>
+  <div class="ind-group">
+    <div class="ind-group-head">
+      <div class="ind-group-icon">🇧🇭</div>
+      <div class="ind-group-info">
+        <h3 class="ind-group-title">Bahrain Clients</h3>
+        <span class="ind-group-country">Bahrain</span>
+      </div>
+    </div>
+    <div class="ind-group-clients">
+      <div class="cl-name">International Research Center Ltd.</div>
+          <div class="cl-name">Pacific International</div>
     </div>
   </div>
   </div>
