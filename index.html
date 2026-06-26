@@ -410,6 +410,153 @@ body{background:var(--bg);color:var(--body);font-size:14px;line-height:1.65;}
   background:linear-gradient(135deg,var(--blue),var(--cyan));
 }
 .cl-name:last-child{border-bottom:none;}
+
+/* ═══════════════════════════════
+   MOBILE RESPONSIVE
+═══════════════════════════════ */
+
+/* Tablet — 768px and below */
+@media (max-width: 768px) {
+
+  /* Cover */
+  .cover-nav {
+    padding: 12px 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .nav-logo-img { height: 32px; width: 148px; }
+  .nav-logo-slogan { width: 148px; font-size: 8px; }
+  .nav-year { display: none; }
+
+  .cover-hero {
+    grid-template-columns: 1fr;
+    padding: 24px 20px 16px;
+    gap: 16px;
+  }
+  .hero-h1 { font-size: 36px; letter-spacing: -1px; }
+  .hero-desc { font-size: 13px; max-width: 100%; }
+  .hero-right { display: none; }
+
+  .hero-stats { display: flex; flex-wrap: wrap; }
+  .stat { padding: 10px 16px; }
+  .stat-v { font-size: 22px; }
+
+  .cover-foot { padding: 10px 20px; }
+  .cover-foot-links {
+    font-size: 10px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  /* Sections */
+  .sec, .sec-alt, .sec-dark {
+    padding: 40px 20px;
+  }
+  .sh-title { font-size: 22px; }
+  .sh-sub { font-size: 13px; }
+
+  /* About */
+  .grid2 { grid-template-columns: 1fr; gap: 12px; }
+
+  /* Products */
+  .pgrid { grid-template-columns: 1fr; gap: 14px; }
+
+  /* Modules */
+  .mgrid { grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  /* Industries */
+  .igrid { grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  /* Testimonials */
+  .tgrid { grid-template-columns: 1fr; gap: 14px; }
+
+  /* Clients */
+  .cgrid { grid-template-columns: 1fr; gap: 14px; }
+
+  /* Team */
+  .tgrid2 { grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  /* Offices */
+  .ogrid { grid-template-columns: 1fr; gap: 12px; }
+
+  /* Contact */
+  .kontact { grid-template-columns: 1fr; gap: 10px; }
+  .srow { grid-template-columns: 1fr; gap: 10px; }
+
+  /* CTA */
+  .cta { padding: 40px 20px; }
+  .cta h2 { font-size: 22px; }
+  .cta-btns { flex-direction: column; align-items: center; gap: 10px; }
+
+  /* Cert bar */
+  .cert-bar { flex-direction: column; text-align: center; }
+  .cert-img { margin: 0 auto; }
+
+  /* PDF btn */
+  .pdf-btn { bottom: 16px; right: 16px; padding: 10px 16px; font-size: 12px; }
+}
+
+/* Mobile — 480px and below */
+@media (max-width: 480px) {
+
+  .cover-nav { padding: 10px 16px; }
+  .nav-logo-img { height: 28px; width: 130px; }
+  .nav-logo-slogan { width: 130px; font-size: 7.5px; letter-spacing: 1.5px; }
+  .nav-social { width: 28px; height: 28px; }
+  .nav-social svg { width: 13px; height: 13px; }
+
+  .cover-hero { padding: 20px 16px 14px; }
+  .hero-kicker { font-size: 9px; letter-spacing: 1.5px; margin-bottom: 10px; }
+  .hero-h1 { font-size: 28px; margin-bottom: 12px; }
+  .hero-desc { font-size: 12.5px; margin-bottom: 20px; }
+
+  .hero-stats { width: 100%; }
+  .stat { flex: 1; padding: 10px 10px; }
+  .stat-v { font-size: 20px; }
+  .stat-l { font-size: 8px; }
+
+  .cover-foot { padding: 10px 16px; }
+  .cover-foot-links { font-size: 9.5px; gap: 6px; }
+
+  .sec, .sec-alt, .sec-dark { padding: 32px 16px; }
+  .sh-title { font-size: 20px; }
+
+  /* Modules — 1 col on small phones */
+  .mgrid { grid-template-columns: 1fr; }
+
+  /* Industries — 2 cols still fine */
+  .igrid { grid-template-columns: 1fr 1fr; }
+  .ico { font-size: 22px; }
+  .iname { font-size: 11.5px; }
+
+  /* Team — 2 cols */
+  .tgrid2 { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tc-photo-wrap { width: 64px; height: 64px; }
+  .tc-initials { width: 64px; height: 64px; font-size: 15px; }
+  .tc-name { font-size: 12px; }
+  .tc-role { font-size: 10.5px; }
+
+  /* Client groups */
+  .ind-group-head { padding: 12px 14px; gap: 10px; }
+  .ind-group-icon { width: 36px; height: 36px; font-size: 18px; }
+  .ind-group-title { font-size: 12.5px; }
+  .cl-name { font-size: 12px; padding: 6px 16px 6px 30px; }
+
+  /* Contact */
+  .cc-val { font-size: 13px; }
+  .kcard { padding: 14px; gap: 12px; }
+  .kico { width: 34px; height: 34px; }
+
+  /* Cert bar */
+  .cert-bar { padding: 16px; gap: 14px; }
+  .cert-bar h4 { font-size: 13px; }
+  .cert-bar p { font-size: 12px; }
+
+  .cta h2 { font-size: 20px; }
+  .cta p { font-size: 13px; }
+  .btn1, .btn2 { width: 100%; text-align: center; padding: 12px; }
+}
+
 </style>
 </head>
 <body>
