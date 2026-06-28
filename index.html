@@ -691,6 +691,316 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
   .process-grid{grid-template-columns:1fr;}
 }
 
+
+.cl-link{
+  color:inherit;text-decoration:none;
+  border-bottom:1px dashed rgba(26,114,232,0.3);
+  transition:color .15s,border-color .15s;
+}
+.cl-link:hover{
+  color:var(--blue);
+  border-bottom-color:var(--blue);
+}
+
+/* ── Client Stats ── */
+.client-stats{{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:16px;margin-bottom:32px;
+}}
+.cstat{{
+  background:var(--bg);border:1px solid var(--line);
+  border-radius:var(--r-md);padding:20px 24px;
+  text-align:center;position:relative;overflow:hidden;
+}}
+.cstat::before{{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan));
+}}
+.cstat strong{{
+  display:block;font-size:30px;font-weight:800;
+  color:var(--blue);letter-spacing:-0.5px;line-height:1;margin-bottom:6px;
+}}
+.cstat span{{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}}
+
+/* ── Accordion ── */
+.accordion{{display:flex;flex-direction:column;gap:8px;}}
+
+.acc-item{{
+  background:var(--bg);border:1px solid var(--line);
+  border-radius:var(--r-md);overflow:hidden;
+  transition:box-shadow .2s;
+}}
+.acc-item:hover{{box-shadow:0 4px 16px rgba(13,27,42,0.07);}}
+.acc-item.open{{border-color:var(--blue);box-shadow:0 4px 20px rgba(26,114,232,0.1);}}
+
+.acc-header{{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 22px;cursor:pointer;
+  user-select:none;
+  transition:background .15s;
+}}
+.acc-header:hover{{background:var(--bg2);}}
+.acc-item.open .acc-header{{background:linear-gradient(135deg,#071525,#0D2A50);}}
+.acc-item.open .acc-title{{color:#fff;}}
+.acc-item.open .acc-country{{color:var(--cyan);}}
+.acc-item.open .acc-count{{color:var(--cyan);border-color:rgba(26,179,217,0.3);background:rgba(26,179,217,0.1);}}
+.acc-item.open .acc-arrow{{color:#fff;transform:rotate(180deg);}}
+
+.acc-left{{display:flex;align-items:center;gap:14px;}}
+.acc-icon{{
+  font-size:22px;width:44px;height:44px;border-radius:10px;
+  background:var(--bg2);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}}
+.acc-item.open .acc-icon{{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.12);}}
+.acc-meta{{display:flex;flex-direction:column;gap:2px;}}
+.acc-title{{font-size:15px;font-weight:700;color:var(--ink);transition:color .15s;}}
+.acc-country{{font-size:10.5px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;}}
+
+.acc-right{{display:flex;align-items:center;gap:12px;flex-shrink:0;}}
+.acc-count{{
+  font-size:11px;font-weight:700;color:var(--blue);
+  background:var(--blue-lt);border:1px solid rgba(26,114,232,0.2);
+  padding:3px 12px;border-radius:20px;white-space:nowrap;
+  transition:all .15s;
+}}
+.acc-arrow{{color:var(--muted);transition:transform .3s,color .15s;flex-shrink:0;}}
+
+/* Body */
+.acc-body{{
+  max-height:0;overflow:hidden;
+  transition:max-height .35s ease;
+}}
+.acc-item.open .acc-body{{max-height:600px;}}
+
+.acc-clients{{
+  padding:16px 22px 20px;
+  column-gap:24px;
+}}
+.acc-client{{
+  font-size:13.5px;color:var(--body);
+  padding:7px 0 7px 18px;
+  border-bottom:1px solid var(--bg2);
+  line-height:1.4;position:relative;
+  break-inside:avoid;
+}}
+.acc-client::before{{
+  content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:6px;height:6px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--cyan));
+}}
+.acc-client:last-child{{border-bottom:none;}}
+
+/* JS toggle */
+@media(max-width:768px){{
+  .client-stats{{grid-template-columns:repeat(2,1fr);}}
+  .acc-clients{{columns:1!important;}}
+  .acc-header{{padding:14px 16px;}}
+  .acc-title{{font-size:14px;}}
+}}
+@media(max-width:480px){{
+  .client-stats{{grid-template-columns:1fr 1fr;gap:10px;}}
+  .cstat strong{{font-size:24px;}}
+}}
+
+
+/* ══ CLIENT STATS ══ */
+.cl-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;margin-bottom:32px;
+  border:1px solid var(--line);border-radius:var(--r-md);
+  overflow:hidden;background:var(--bg);
+}
+.cl-stat{
+  padding:20px 24px;text-align:center;
+  border-right:1px solid var(--line);position:relative;
+}
+.cl-stat:last-child{border-right:none;}
+.cl-stat::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan));
+}
+.cl-stat-v{font-size:28px;font-weight:800;color:var(--ink);line-height:1;margin-bottom:4px;}
+.cl-stat-l{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+
+/* ══ ACCORDION ══ */
+.accordion{display:flex;flex-direction:column;gap:10px;}
+
+.acc-item{
+  background:var(--bg);
+  border:1px solid var(--line);
+  border-radius:14px;
+  overflow:hidden;
+  transition:border-color .2s, box-shadow .2s;
+}
+.acc-item.open{
+  border-color:var(--blue);
+  box-shadow:0 4px 24px rgba(26,114,232,0.1);
+}
+
+.acc-hd{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 24px;cursor:pointer;
+  user-select:none;
+  transition:background .15s;
+}
+.acc-hd:hover{background:var(--bg2);}
+.acc-item.open .acc-hd{
+  background:linear-gradient(135deg,#071525 0%,#0D2A50 100%);
+}
+
+.acc-hl{display:flex;align-items:center;gap:16px;}
+.acc-ico{
+  width:46px;height:46px;border-radius:12px;
+  background:var(--bg2);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0;
+  transition:background .15s,border-color .15s;
+}
+.acc-item.open .acc-ico{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);}
+
+.acc-ttl{font-size:15px;font-weight:700;color:var(--ink);transition:color .15s;}
+.acc-ctr{font-size:10.5px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;margin-top:2px;transition:color .15s;}
+.acc-item.open .acc-ttl{color:#fff;}
+.acc-item.open .acc-ctr{color:var(--cyan);}
+
+.acc-hr{display:flex;align-items:center;gap:12px;}
+.acc-badge{
+  font-size:11px;font-weight:700;
+  color:var(--blue);background:var(--blue-lt);
+  border:1px solid rgba(26,114,232,0.2);
+  padding:4px 12px;border-radius:20px;white-space:nowrap;
+}
+.acc-item.open .acc-badge{color:var(--cyan);background:rgba(26,179,217,0.1);border-color:rgba(26,179,217,0.25);}
+
+.acc-arr{
+  color:var(--muted);flex-shrink:0;
+  transition:transform .25s,color .15s;
+}
+.acc-item.open .acc-arr{transform:rotate(180deg);color:#fff;}
+
+/* Body */
+.acc-bd{
+  border-top:1px solid var(--line);
+  background:var(--bg);
+}
+.acc-item.open .acc-bd{border-top-color:rgba(26,114,232,0.15);}
+
+.acc-cls{padding:20px 24px;}
+.acc-cl{
+  font-size:13.5px;color:var(--body);
+  padding:8px 0 8px 18px;
+  border-bottom:1px solid var(--bg2);
+  position:relative;line-height:1.4;
+  break-inside:avoid;
+}
+.acc-cl:last-child{border-bottom:none;}
+.acc-cl::before{
+  content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:6px;height:6px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--cyan));
+}
+.acc-cl a{color:var(--blue);text-decoration:none;border-bottom:1px dashed rgba(26,114,232,0.3);transition:color .15s;}
+.acc-cl a:hover{color:var(--blue-dk);border-bottom-color:var(--blue-dk);}
+
+@media(max-width:768px){
+  .cl-stats{grid-template-columns:repeat(2,1fr);}
+  .cl-stat{border-bottom:1px solid var(--line);}
+  .acc-hd{padding:14px 16px;}
+  .acc-ico{width:38px;height:38px;font-size:18px;}
+  .acc-ttl{font-size:14px;}
+  .acc-cls{padding:14px 16px;columns:1!important;}
+}
+@media(max-width:480px){
+  .cl-stats{grid-template-columns:1fr 1fr;}
+  .acc-badge{display:none;}
+}
+
+
+/* ══ COMPARISON TABLE ══ */
+.cmp-wrap{
+  overflow-x:auto;
+  border-radius:var(--r-md);
+  border:1px solid var(--line);
+  box-shadow:0 2px 16px rgba(13,27,42,0.06);
+  margin-bottom:20px;
+}
+.cmp-table{
+  width:100%;border-collapse:collapse;
+  font-size:13.5px;
+}
+.cmp-table thead tr{
+  background:linear-gradient(135deg,#071525,#0D2A50);
+}
+.cmp-table thead th{
+  padding:16px 18px;
+  text-align:center;
+  color:rgba(255,255,255,0.6);
+  font-weight:600;font-size:12px;
+  border-right:1px solid rgba(255,255,255,0.07);
+}
+.cmp-table thead th:last-child{border-right:none;}
+.cmp-table thead th.cmp-feature{
+  text-align:left;color:rgba(255,255,255,0.4);
+  font-size:11px;letter-spacing:0.5px;
+  width:200px;
+}
+.cmp-table thead th.cmp-bp{
+  background:rgba(26,114,232,0.25);
+  border-top:2px solid var(--blue);
+}
+.cmp-th-brand{
+  font-size:14px;font-weight:800;color:#fff;margin-bottom:3px;
+}
+.cmp-bp .cmp-th-brand{color:var(--cyan);}
+.cmp-dot{color:var(--cyan);}
+.cmp-th-sub{font-size:10px;color:rgba(255,255,255,0.4);font-weight:400;}
+.cmp-bp .cmp-th-sub{color:rgba(26,179,217,0.6);}
+
+.cmp-table tbody tr{border-bottom:1px solid var(--line);}
+.cmp-table tbody tr:last-child{border-bottom:none;}
+.cmp-table tbody tr.cmp-alt{background:var(--bg2);}
+.cmp-table tbody tr:hover{background:var(--blue-lt);}
+
+.cmp-table tbody td{
+  padding:13px 18px;
+  text-align:center;
+  color:var(--muted);
+  border-right:1px solid var(--line);
+  font-size:13px;
+}
+.cmp-table tbody td:last-child{border-right:none;}
+.cmp-table tbody td.cmp-feature{
+  text-align:left;color:var(--ink);
+  font-weight:600;font-size:13.5px;
+}
+.cmp-table tbody td.cmp-bp{
+  background:rgba(26,114,232,0.04);
+  font-weight:600;color:var(--ink);
+}
+
+.cmp-yes{color:#0F7A60;font-weight:700;margin-right:4px;}
+.cmp-no{color:#EF4444;font-weight:700;margin-right:4px;}
+.cmp-mid{color:#F59E0B;font-weight:700;margin-right:4px;}
+
+/* Callout */
+.cmp-callout{
+  display:flex;align-items:flex-start;gap:20px;
+  background:linear-gradient(135deg,var(--blue-lt),#EEF4FB);
+  border:1px solid rgba(26,114,232,0.2);
+  border-left:4px solid var(--blue);
+  border-radius:var(--r-md);
+  padding:22px 26px;
+}
+.cmp-callout-icon{font-size:28px;flex-shrink:0;line-height:1;}
+.cmp-callout h4{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.cmp-callout p{font-size:13.5px;color:var(--muted);line-height:1.7;}
+
+@media(max-width:768px){
+  .cmp-table{min-width:600px;}
+  .cmp-table thead th,.cmp-table tbody td{padding:10px 12px;font-size:12px;}
+}
+
 </style>
 </head>
 <body>
@@ -1190,22 +1500,136 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
   </div>
 </div>
 
-<!-- INDUSTRIES -->
+
+<!-- COMPARISON -->
 <div class="sec">
-  <div class="sh"><span class="sh-lbl">Industries</span><h2 class="sh-title">Tailored for Your Industry</h2><p class="sh-sub">Customized to the specific workflows and reporting needs of a wide range of industries.</p></div>
-  <div class="igrid">
-    <div class="icell"><div class="ico">🏭</div><div class="iname">Manufacturing</div></div>
-    <div class="icell"><div class="ico">🛢️</div><div class="iname">Oil &amp; Trading</div></div>
-    <div class="icell"><div class="ico">🏗️</div><div class="iname">Construction</div></div>
-    <div class="icell"><div class="ico">🛒</div><div class="iname">Retail &amp; FMCG</div></div>
-    <div class="icell"><div class="ico">🏥</div><div class="iname">Healthcare</div></div>
-    <div class="icell"><div class="ico">🎓</div><div class="iname">Education</div></div>
-    <div class="icell"><div class="ico">🏢</div><div class="iname">Real Estate</div></div>
-    <div class="icell"><div class="ico">🚢</div><div class="iname">Sea Trading</div></div>
-    <div class="icell"><div class="ico">🧴</div><div class="iname">Edible Oil</div></div>
-    <div class="icell"><div class="ico">📦</div><div class="iname">Distribution</div></div>
-    <div class="icell"><div class="ico">🧱</div><div class="iname">Sanitary &amp; Hardware</div></div>
-    <div class="icell"><div class="ico">🍱</div><div class="iname">Food Processing</div></div>
+  <div class="sh">
+    <span class="sh-lbl">Why Blupoint</span>
+    <h2 class="sh-title">How We Compare to Industry Giants</h2>
+    <p class="sh-sub">Enterprise ERP doesn't have to mean enterprise complexity or enterprise price. See how Blupoint stacks up against the world's biggest names.</p>
+  </div>
+
+  <div class="cmp-wrap">
+    <table class="cmp-table">
+      <thead>
+        <tr>
+          <th class="cmp-feature">Feature</th>
+          <th class="cmp-bp">
+            <div class="cmp-th-brand">
+              <span class="cmp-dot">●</span> Blupoint
+            </div>
+            <span class="cmp-th-sub">Oracle-Apex &amp; Odoo ERP</span>
+          </th>
+          <th>
+            <div class="cmp-th-brand">SAP</div>
+            <span class="cmp-th-sub">SAP S/4HANA</span>
+          </th>
+          <th>
+            <div class="cmp-th-brand">Oracle</div>
+            <span class="cmp-th-sub">NetSuite / EBS</span>
+          </th>
+          <th>
+            <div class="cmp-th-brand">Zoho</div>
+            <span class="cmp-th-sub">Zoho ERP</span>
+          </th>
+          <th>
+            <div class="cmp-th-brand">Microsoft</div>
+            <span class="cmp-th-sub">Dynamics 365</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="cmp-feature">Implementation Cost</td>
+          <td class="cmp-bp"><span class="cmp-yes">✓</span> Low</td>
+          <td><span class="cmp-no">✗</span> Very High</td>
+          <td><span class="cmp-no">✗</span> Very High</td>
+          <td><span class="cmp-mid">~</span> Medium</td>
+          <td><span class="cmp-no">✗</span> High</td>
+        </tr>
+        <tr class="cmp-alt">
+          <td class="cmp-feature">Custom Industry Workflows</td>
+          <td class="cmp-bp"><span class="cmp-yes">✓</span> Full Custom</td>
+          <td><span class="cmp-mid">~</span> Partial</td>
+          <td><span class="cmp-mid">~</span> Partial</td>
+          <td><span class="cmp-mid">~</span> Limited</td>
+          <td><span class="cmp-mid">~</span> Partial</td>
+        </tr>
+        <tr>
+          <td class="cmp-feature">Implementation Time</td>
+          <td class="cmp-bp"><span class="cmp-yes">✓</span> Weeks</td>
+          <td><span class="cmp-no">✗</span> 12–18 Months</td>
+          <td><span class="cmp-no">✗</span> 6–12 Months</td>
+          <td><span class="cmp-mid">~</span> 3–6 Months</td>
+          <td><span class="cmp-no">✗</span> 6–12 Months</td>
+        </tr>
+        <tr class="cmp-alt">
+          <td class="cmp-feature">Dedicated Local Support</td>
+          <td class="cmp-bp"><span class="cmp-yes">✓</span> Yes — Dedicated</td>
+          <td><span class="cmp-no">✗</span> Partner-based</td>
+          <td><span class="cmp-no">✗</span> Partner-based</td>
+          <td><span class="cmp-mid">~</span> Online only</td>
+          <td><span class="cmp-no">✗</span> Partner-based</td>
+        </tr>
+        <tr>
+          <td class="cmp-feature">Cloud-Hosted</td>
+          <td class="cmp-bp"><span class="cmp-yes">✓</span> 100% Cloud</td>
+          <td><span class="cmp-yes">✓</span> Yes</td>
+          <td><span class="cmp-yes">✓</span> Yes</td>
+          <td><span class="cmp-yes">✓</span> Yes</td>
+          <td><span class="cmp-yes">✓</span> Yes</td>
+        </tr>
+        <tr class="cmp-alt">
+          <td class="cmp-feature">SME-Friendly</td>
+          <td class="cmp-bp"><span class="cmp-yes">✓</span> Built for SMEs</td>
+          <td><span class="cmp-no">✗</span> Enterprise only</td>
+          <td><span class="cmp-no">✗</span> Enterprise only</td>
+          <td><span class="cmp-yes">✓</span> Yes</td>
+          <td><span class="cmp-mid">~</span> Partial</td>
+        </tr>
+        <tr>
+          <td class="cmp-feature">Pakistan / Gulf Region Support</td>
+          <td class="cmp-bp"><span class="cmp-yes">✓</span> Native</td>
+          <td><span class="cmp-no">✗</span> Limited</td>
+          <td><span class="cmp-no">✗</span> Limited</td>
+          <td><span class="cmp-mid">~</span> Online</td>
+          <td><span class="cmp-mid">~</span> Partner</td>
+        </tr>
+        <tr class="cmp-alt">
+          <td class="cmp-feature">Industry-Specific Modules</td>
+          <td class="cmp-bp"><span class="cmp-yes">✓</span> Yes — 9 Modules</td>
+          <td><span class="cmp-yes">✓</span> Yes</td>
+          <td><span class="cmp-yes">✓</span> Yes</td>
+          <td><span class="cmp-mid">~</span> Generic</td>
+          <td><span class="cmp-yes">✓</span> Yes</td>
+        </tr>
+        <tr>
+          <td class="cmp-feature">Odoo Certified Partner</td>
+          <td class="cmp-bp"><span class="cmp-yes">✓</span> Yes</td>
+          <td><span class="cmp-no">✗</span> No</td>
+          <td><span class="cmp-no">✗</span> No</td>
+          <td><span class="cmp-no">✗</span> No</td>
+          <td><span class="cmp-no">✗</span> No</td>
+        </tr>
+        <tr class="cmp-alt">
+          <td class="cmp-feature">Training &amp; Onboarding</td>
+          <td class="cmp-bp"><span class="cmp-yes">✓</span> Included</td>
+          <td><span class="cmp-no">✗</span> Extra Cost</td>
+          <td><span class="cmp-no">✗</span> Extra Cost</td>
+          <td><span class="cmp-mid">~</span> Self-serve</td>
+          <td><span class="cmp-no">✗</span> Extra Cost</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Bottom callout -->
+  <div class="cmp-callout">
+    <div class="cmp-callout-icon">💡</div>
+    <div>
+      <h4>The Blupoint Advantage</h4>
+      <p>Global ERP giants are built for Fortune 500 companies — complex, expensive, and slow to deploy. Blupoint delivers the same enterprise-level functionality, customized to your exact industry workflows, at a fraction of the cost and timeline — with a local team that speaks your language and understands your market.</p>
+    </div>
   </div>
 </div>
 
@@ -1221,225 +1645,337 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
 
 <!-- CLIENTS -->
 <div class="sec sec-alt">
-  <div class="sh"><span class="sh-lbl">Our Clients</span><h2 class="sh-title">Companies that Trust Blupoint</h2><p class="sh-sub">Businesses across 11 industries and 4 countries trust Blupoint as their ERP partner.</p></div>
-  <div class="cgrid">
-  <div class="ind-group">
-    <div class="ind-group-head">
-      <div class="ind-group-icon">🏗️</div>
-      <div class="ind-group-info">
-        <h3 class="ind-group-title">Construction Industry</h3>
-        <span class="ind-group-country">Pakistan</span>
+  <div class="sh">
+    <span class="sh-lbl">Our Clients</span>
+    <h2 class="sh-title">Companies that Trust Blupoint</h2>
+    <p class="sh-sub">Businesses across 13 industries and 4 countries trust Blupoint as their ERP partner.</p>
+  </div>
+
+  <!-- Stats -->
+  <div class="cl-stats">
+    <div class="cl-stat"><div class="cl-stat-v">65+</div><div class="cl-stat-l">Total Clients</div></div>
+    <div class="cl-stat"><div class="cl-stat-v">13</div><div class="cl-stat-l">Industries</div></div>
+    <div class="cl-stat"><div class="cl-stat-v">4</div><div class="cl-stat-l">Countries</div></div>
+    <div class="cl-stat"><div class="cl-stat-v">10+</div><div class="cl-stat-l">Years Experience</div></div>
+  </div>
+
+  <!-- Accordion -->
+  <div class="accordion">
+  <div class="acc-item" id="acc-0">
+    <div class="acc-hd" onclick="toggleAcc(0)">
+      <div class="acc-hl">
+        <div class="acc-ico">🏗️</div>
+        <div>
+          <div class="acc-ttl">Construction Industry</div>
+          <div class="acc-ctr">Pakistan</div>
+        </div>
+      </div>
+      <div class="acc-hr">
+        <span class="acc-badge">4 clients</span>
+        <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
-    <div class="ind-group-clients">
-      <div class="cl-name">Al Rehman Enterprises (Pvt.) Ltd.</div>
-          <div class="cl-name">Dughal and Company (Pvt.) Ltd.</div>
-          <div class="cl-name">Aslam Pervaiz and Company (Pvt.) Ltd.</div>
-          <div class="cl-name">Fast Track Construction (Pvt.) Ltd.</div>
-          <div class="cl-name">Highway Construction (Pvt.) Ltd.</div>
+    <div class="acc-bd" id="body-0" style="display:none">
+      <div class="acc-cls" style="columns:1;column-gap:24px;">
+        <div class="acc-cl"><a href="https://al-rehmanenterprises.com/" target="_blank" class="cl-link">Al Rehman Enterprises (Pvt.) Ltd.</a></div>
+<div class="acc-cl">Dughal and Company (Pvt.) Ltd.</div>
+<div class="acc-cl">Aslam Pervaiz and Company (Pvt.) Ltd.</div>
+<div class="acc-cl"><a href="https://www.ftcpvt.com/" target="_blank" class="cl-link">Fast Track Construction (Pvt.) Ltd.</a></div>
+      </div>
     </div>
   </div>
-  <div class="ind-group">
-    <div class="ind-group-head">
-      <div class="ind-group-icon">🧴</div>
-      <div class="ind-group-info">
-        <h3 class="ind-group-title">Ghee &amp; Oil Industry</h3>
-        <span class="ind-group-country">Pakistan</span>
+  <div class="acc-item" id="acc-1">
+    <div class="acc-hd" onclick="toggleAcc(1)">
+      <div class="acc-hl">
+        <div class="acc-ico">🧴</div>
+        <div>
+          <div class="acc-ttl">Ghee &amp; Oil Industry</div>
+          <div class="acc-ctr">Pakistan</div>
+        </div>
+      </div>
+      <div class="acc-hr">
+        <span class="acc-badge">6 clients</span>
+        <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
-    <div class="ind-group-clients">
-      <div class="cl-name">MM Ghee Mills (Pvt.) Ltd.</div>
-          <div class="cl-name">Savera (PTE) Limited</div>
-          <div class="cl-name">Trade Star (PTE) Limited</div>
-          <div class="cl-name">HM Extraction (Pvt.) Ltd.</div>
-          <div class="cl-name">Agro Trade Enterprises</div>
-          <div class="cl-name">Agro Star (Pvt.) Ltd.</div>
-          <div class="cl-name">Abdul Waheed Group of Industries</div>
-          <div class="cl-name">Markhor Oil and Ghee Mills (Pvt.) Ltd.</div>
+    <div class="acc-bd" id="body-1" style="display:none">
+      <div class="acc-cls" style="columns:2;column-gap:24px;">
+        <div class="acc-cl"><a href="https://mmgoc.com.pk/" target="_blank" class="cl-link">MM Ghee Mills (Pvt.) Ltd.</a></div>
+<div class="acc-cl">Trade Star (PTE) Limited</div>
+<div class="acc-cl"><a href="https://awgroup.com.pk/#Our-Brand" target="_blank" class="cl-link">HM Extraction (Pvt.) Ltd.</a></div>
+<div class="acc-cl">Agro Trade Enterprises</div>
+<div class="acc-cl">Agro Star (Pvt.) Ltd.</div>
+<div class="acc-cl"><a href="https://awgroup.com.pk/#Our-Brand" target="_blank" class="cl-link">HM Extraction (Pvt.) Ltd.</a></div>
+      </div>
     </div>
   </div>
-  <div class="ind-group">
-    <div class="ind-group-head">
-      <div class="ind-group-icon">🧵</div>
-      <div class="ind-group-info">
-        <h3 class="ind-group-title">Textile Industry</h3>
-        <span class="ind-group-country">Pakistan</span>
+  <div class="acc-item" id="acc-2">
+    <div class="acc-hd" onclick="toggleAcc(2)">
+      <div class="acc-hl">
+        <div class="acc-ico">🧵</div>
+        <div>
+          <div class="acc-ttl">Textile Industry</div>
+          <div class="acc-ctr">Pakistan</div>
+        </div>
+      </div>
+      <div class="acc-hr">
+        <span class="acc-badge">8 clients</span>
+        <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
-    <div class="ind-group-clients">
-      <div class="cl-name">Asghar Fabrics (Pvt.) Ltd.</div>
-          <div class="cl-name">Pakistan Dying (Pvt.) Ltd.</div>
-          <div class="cl-name">ASE Apparel (Pvt.) Ltd.</div>
-          <div class="cl-name">United Textiles (Pvt.) Ltd.</div>
-          <div class="cl-name">MWM Textiles (Pvt.) Ltd.</div>
-          <div class="cl-name">Get Smart Hosiery (Pvt.) Ltd.</div>
-          <div class="cl-name">Ghumman Dying (Pvt.) Ltd.</div>
-          <div class="cl-name">Jamal Textile Industries (Pvt.) Ltd.</div>
-          <div class="cl-name">Samtex Textiles (Pvt.) Ltd.</div>
-          <div class="cl-name">Ess Arr Exports (Pvt.) Ltd.</div>
+    <div class="acc-bd" id="body-2" style="display:none">
+      <div class="acc-cls" style="columns:2;column-gap:24px;">
+        <div class="acc-cl">Asghar Fabrics (Pvt.) Ltd.</div>
+<div class="acc-cl">Pakistan Dying (Pvt.) Ltd.</div>
+<div class="acc-cl">ASE Apparel (Pvt.) Ltd.</div>
+<div class="acc-cl">United Textiles (Pvt.) Ltd.</div>
+<div class="acc-cl">MWM Textiles (Pvt.) Ltd.</div>
+<div class="acc-cl">Get Smart Hosiery (Pvt.) Ltd.</div>
+<div class="acc-cl">Ghumman Dying (Pvt.) Ltd.</div>
+<div class="acc-cl">Jamal Textile Industries (Pvt.) Ltd.</div>
+      </div>
     </div>
   </div>
-  <div class="ind-group">
-    <div class="ind-group-head">
-      <div class="ind-group-icon">🏥</div>
-      <div class="ind-group-info">
-        <h3 class="ind-group-title">Hospital &amp; Medicine</h3>
-        <span class="ind-group-country">Pakistan</span>
+  <div class="acc-item" id="acc-3">
+    <div class="acc-hd" onclick="toggleAcc(3)">
+      <div class="acc-hl">
+        <div class="acc-ico">🏥</div>
+        <div>
+          <div class="acc-ttl">Hospital &amp; Medicine</div>
+          <div class="acc-ctr">Pakistan</div>
+        </div>
+      </div>
+      <div class="acc-hr">
+        <span class="acc-badge">7 clients</span>
+        <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
-    <div class="ind-group-clients">
-      <div class="cl-name">Al Mustafa Trust Hospital</div>
-          <div class="cl-name">Shah Traders</div>
-          <div class="cl-name">Pak Green Pharmacy</div>
-          <div class="cl-name">Pakistra (Pvt.) Ltd.</div>
-          <div class="cl-name">Prime Radiology Center</div>
-          <div class="cl-name">New Pakistan Medical Store</div>
-          <div class="cl-name">Ameen Foundation</div>
-          <div class="cl-name">Shifa Pharmacy (Pvt.) Ltd.</div>
-          <div class="cl-name">Target Medicose</div>
+    <div class="acc-bd" id="body-3" style="display:none">
+      <div class="acc-cls" style="columns:2;column-gap:24px;">
+        <div class="acc-cl">Al Mustafa Trust Hospital</div>
+<div class="acc-cl">Shah Traders</div>
+<div class="acc-cl">Pak Green Pharmacy</div>
+<div class="acc-cl">Pakistra (Pvt.) Ltd.</div>
+<div class="acc-cl">Prime Radiology Center</div>
+<div class="acc-cl">New Pakistan Medical Store</div>
+<div class="acc-cl">Ameen Foundation</div>
+      </div>
     </div>
   </div>
-  <div class="ind-group">
-    <div class="ind-group-head">
-      <div class="ind-group-icon">📦</div>
-      <div class="ind-group-info">
-        <h3 class="ind-group-title">Packaging Industry</h3>
-        <span class="ind-group-country">Pakistan</span>
+  <div class="acc-item" id="acc-4">
+    <div class="acc-hd" onclick="toggleAcc(4)">
+      <div class="acc-hl">
+        <div class="acc-ico">📦</div>
+        <div>
+          <div class="acc-ttl">Packaging Industry</div>
+          <div class="acc-ctr">Pakistan</div>
+        </div>
+      </div>
+      <div class="acc-hr">
+        <span class="acc-badge">4 clients</span>
+        <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
-    <div class="ind-group-clients">
-      <div class="cl-name">Abaan Packages (Pvt.) Ltd.</div>
-          <div class="cl-name">Pick N Pack (Pvt.) Ltd.</div>
-          <div class="cl-name">Abdullah Packages</div>
-          <div class="cl-name">Raj Packages</div>
-          <div class="cl-name">Packages Warehouse</div>
-          <div class="cl-name">Update Packages</div>
+    <div class="acc-bd" id="body-4" style="display:none">
+      <div class="acc-cls" style="columns:1;column-gap:24px;">
+        <div class="acc-cl">Abaan Packages (Pvt.) Ltd.</div>
+<div class="acc-cl">Pick N Pack (Pvt.) Ltd.</div>
+<div class="acc-cl">Abdullah Packages</div>
+<div class="acc-cl">Raj Packages</div>
+      </div>
     </div>
   </div>
-  <div class="ind-group">
-    <div class="ind-group-head">
-      <div class="ind-group-icon">🛒</div>
-      <div class="ind-group-info">
-        <h3 class="ind-group-title">Retail &amp; Trading</h3>
-        <span class="ind-group-country">Pakistan</span>
+  <div class="acc-item" id="acc-5">
+    <div class="acc-hd" onclick="toggleAcc(5)">
+      <div class="acc-hl">
+        <div class="acc-ico">🛒</div>
+        <div>
+          <div class="acc-ttl">Retail &amp; Trading</div>
+          <div class="acc-ctr">Pakistan</div>
+        </div>
+      </div>
+      <div class="acc-hr">
+        <span class="acc-badge">10 clients</span>
+        <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
-    <div class="ind-group-clients">
-      <div class="cl-name">Ajwa Sweet and Bakers</div>
-          <div class="cl-name">Al Ghufran Traders</div>
-          <div class="cl-name">Al Adan International</div>
-          <div class="cl-name">Ansari Traders</div>
-          <div class="cl-name">Four Star Dyes</div>
-          <div class="cl-name">MH Trading (Pvt.) Ltd.</div>
-          <div class="cl-name">Amam Habib Corporation</div>
-          <div class="cl-name">Hassan Traders</div>
-          <div class="cl-name">Huzaifa Electric Store</div>
-          <div class="cl-name">Iftikhar Hardware Store</div>
-          <div class="cl-name">Waheed Plywood Store</div>
-          <div class="cl-name">Mumtaz and Company</div>
+    <div class="acc-bd" id="body-5" style="display:none">
+      <div class="acc-cls" style="columns:2;column-gap:24px;">
+        <div class="acc-cl">Ajwa Sweet and Bakers</div>
+<div class="acc-cl">Al Ghufran Traders</div>
+<div class="acc-cl">Al Adan International</div>
+<div class="acc-cl">Ansari Traders</div>
+<div class="acc-cl">Four Star Dyes</div>
+<div class="acc-cl">MH Trading (Pvt.) Ltd.</div>
+<div class="acc-cl">Amam Habib Corporation</div>
+<div class="acc-cl">Hassan Traders</div>
+<div class="acc-cl">Huzaifa Electric Store</div>
+<div class="acc-cl">Iftikhar Hardware Store</div>
+      </div>
     </div>
   </div>
-  <div class="ind-group">
-    <div class="ind-group-head">
-      <div class="ind-group-icon">🏠</div>
-      <div class="ind-group-info">
-        <h3 class="ind-group-title">Property &amp; Housing</h3>
-        <span class="ind-group-country">Pakistan</span>
+  <div class="acc-item" id="acc-6">
+    <div class="acc-hd" onclick="toggleAcc(6)">
+      <div class="acc-hl">
+        <div class="acc-ico">🏠</div>
+        <div>
+          <div class="acc-ttl">Property &amp; Housing</div>
+          <div class="acc-ctr">Pakistan</div>
+        </div>
+      </div>
+      <div class="acc-hr">
+        <span class="acc-badge">4 clients</span>
+        <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
-    <div class="ind-group-clients">
-      <div class="cl-name">ARZ313 (Pvt.) Ltd.</div>
-          <div class="cl-name">Top City Housing Society</div>
-          <div class="cl-name">Aur Properties (Pvt.) Ltd.</div>
-          <div class="cl-name">Emaan City</div>
-          <div class="cl-name">Qamar Construction</div>
-          <div class="cl-name">Areesh Builders and Construction (Pvt.) Ltd.</div>
+    <div class="acc-bd" id="body-6" style="display:none">
+      <div class="acc-cls" style="columns:1;column-gap:24px;">
+        <div class="acc-cl">ARZ313 (Pvt.) Ltd.</div>
+<div class="acc-cl">Top City Housing Society</div>
+<div class="acc-cl">Aur Properties (Pvt.) Ltd.</div>
+<div class="acc-cl">Emaan City</div>
+      </div>
     </div>
   </div>
-  <div class="ind-group">
-    <div class="ind-group-head">
-      <div class="ind-group-icon">⚙️</div>
-      <div class="ind-group-info">
-        <h3 class="ind-group-title">Brass, Plastic &amp; Aluminum</h3>
-        <span class="ind-group-country">Pakistan</span>
+  <div class="acc-item" id="acc-7">
+    <div class="acc-hd" onclick="toggleAcc(7)">
+      <div class="acc-hl">
+        <div class="acc-ico">⚙️</div>
+        <div>
+          <div class="acc-ttl">Brass, Plastic &amp; Aluminum</div>
+          <div class="acc-ctr">Pakistan</div>
+        </div>
+      </div>
+      <div class="acc-hr">
+        <span class="acc-badge">5 clients</span>
+        <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
-    <div class="ind-group-clients">
-      <div class="cl-name">Master Poly Plastic Industry Ltd.</div>
-          <div class="cl-name">Diamond Aluminum Industries</div>
-          <div class="cl-name">Union Plastic Industry</div>
-          <div class="cl-name">World Aluminum Industries</div>
-          <div class="cl-name">Nisar Steel Works</div>
-          <div class="cl-name">Zurich Metal Industry</div>
-          <div class="cl-name">Usman Aluminum Industries</div>
+    <div class="acc-bd" id="body-7" style="display:none">
+      <div class="acc-cls" style="columns:1;column-gap:24px;">
+        <div class="acc-cl">Master Poly Plastic Industry Ltd.</div>
+<div class="acc-cl">Diamond Aluminum Industries</div>
+<div class="acc-cl">Union Plastic Industry</div>
+<div class="acc-cl">World Aluminum Industries</div>
+<div class="acc-cl">Nisar Steel Works</div>
+      </div>
     </div>
   </div>
-  <div class="ind-group">
-    <div class="ind-group-head">
-      <div class="ind-group-icon">💎</div>
-      <div class="ind-group-info">
-        <h3 class="ind-group-title">Gold &amp; Diamond Jewelry</h3>
-        <span class="ind-group-country">UAE</span>
+  <div class="acc-item" id="acc-8">
+    <div class="acc-hd" onclick="toggleAcc(8)">
+      <div class="acc-hl">
+        <div class="acc-ico">💎</div>
+        <div>
+          <div class="acc-ttl">Gold &amp; Diamond Jewelry</div>
+          <div class="acc-ctr">UAE</div>
+        </div>
+      </div>
+      <div class="acc-hr">
+        <span class="acc-badge">1 client</span>
+        <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
-    <div class="ind-group-clients">
-      <div class="cl-name">Golden Ocean DMCC</div>
-          <div class="cl-name">Bazelt Jewelry</div>
-          <div class="cl-name">Nawal Jewelry</div>
+    <div class="acc-bd" id="body-8" style="display:none">
+      <div class="acc-cls" style="columns:1;column-gap:24px;">
+        <div class="acc-cl">Golden Ocean DMCC</div>
+      </div>
     </div>
   </div>
-  <div class="ind-group">
-    <div class="ind-group-head">
-      <div class="ind-group-icon">🎓</div>
-      <div class="ind-group-info">
-        <h3 class="ind-group-title">Schools &amp; Colleges</h3>
-        <span class="ind-group-country">Pakistan</span>
+  <div class="acc-item" id="acc-9">
+    <div class="acc-hd" onclick="toggleAcc(9)">
+      <div class="acc-hl">
+        <div class="acc-ico">🎓</div>
+        <div>
+          <div class="acc-ttl">Schools &amp; Colleges</div>
+          <div class="acc-ctr">Pakistan</div>
+        </div>
+      </div>
+      <div class="acc-hr">
+        <span class="acc-badge">1 client</span>
+        <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
-    <div class="ind-group-clients">
-      <div class="cl-name">Abassador Grammer School</div>
-          <div class="cl-name">The KIMS School and College</div>
-          <div class="cl-name">Wise Educator High School</div>
+    <div class="acc-bd" id="body-9" style="display:none">
+      <div class="acc-cls" style="columns:1;column-gap:24px;">
+        <div class="acc-cl">Abassador Grammer School</div>
+      </div>
     </div>
   </div>
-  <div class="ind-group">
-    <div class="ind-group-head">
-      <div class="ind-group-icon">🇦🇪</div>
-      <div class="ind-group-info">
-        <h3 class="ind-group-title">UAE Clients</h3>
-        <span class="ind-group-country">UAE</span>
+  <div class="acc-item" id="acc-10">
+    <div class="acc-hd" onclick="toggleAcc(10)">
+      <div class="acc-hl">
+        <div class="acc-ico">🇦🇪</div>
+        <div>
+          <div class="acc-ttl">UAE Clients</div>
+          <div class="acc-ctr">UAE</div>
+        </div>
+      </div>
+      <div class="acc-hr">
+        <span class="acc-badge">12 clients</span>
+        <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
-    <div class="ind-group-clients">
-      <div class="cl-name">White Star Sea General Trading LLC</div>
-          <div class="cl-name">Al Farabi Medical Articles &amp; Requisites Trading LLC</div>
-          <div class="cl-name">Al Sanabeel Al Thahabiya Foodstuff Trading LLC</div>
-          <div class="cl-name">Bifocal General Trading LLC</div>
-          <div class="cl-name">Hadara Hotel Management LLC</div>
-          <div class="cl-name">Tras Building Material Trading LLC</div>
-          <div class="cl-name">Blue Arrow Foodstuff Trading LLC</div>
-          <div class="cl-name">Trizone Electronic Trading LLC</div>
-          <div class="cl-name">Dapoco Furniture Trading LLC</div>
-          <div class="cl-name">Fenix Heavy Machinery &amp; Equipment Trading LLC</div>
-          <div class="cl-name">Sharp Spark General Trading LLC</div>
-          <div class="cl-name">Prime Sourcers Raw Material Trading LLC</div>
+    <div class="acc-bd" id="body-10" style="display:none">
+      <div class="acc-cls" style="columns:2;column-gap:24px;">
+        <div class="acc-cl">White Star Sea General Trading LLC</div>
+<div class="acc-cl">Al Farabi Medical Articles &amp; Requisites Trading LLC</div>
+<div class="acc-cl">Al Sanabeel Al Thahabiya Foodstuff Trading LLC</div>
+<div class="acc-cl">Bifocal General Trading LLC</div>
+<div class="acc-cl">Hadara Hotel Management LLC</div>
+<div class="acc-cl">Tras Building Material Trading LLC</div>
+<div class="acc-cl">Blue Arrow Foodstuff Trading LLC</div>
+<div class="acc-cl">Trizone Electronic Trading LLC</div>
+<div class="acc-cl">Dapoco Furniture Trading LLC</div>
+<div class="acc-cl">Fenix Heavy Machinery &amp; Equipment Trading LLC</div>
+<div class="acc-cl">Sharp Spark General Trading LLC</div>
+<div class="acc-cl"><a href="https://saveraaintl.com/" target="_blank" class="cl-link">Saveraa International</a></div>
+      </div>
     </div>
   </div>
-  <div class="ind-group">
-    <div class="ind-group-head">
-      <div class="ind-group-icon">🇧🇭</div>
-      <div class="ind-group-info">
-        <h3 class="ind-group-title">Bahrain Clients</h3>
-        <span class="ind-group-country">Bahrain</span>
+  <div class="acc-item" id="acc-11">
+    <div class="acc-hd" onclick="toggleAcc(11)">
+      <div class="acc-hl">
+        <div class="acc-ico">🇧🇭</div>
+        <div>
+          <div class="acc-ttl">Bahrain Clients</div>
+          <div class="acc-ctr">Bahrain</div>
+        </div>
+      </div>
+      <div class="acc-hr">
+        <span class="acc-badge">2 clients</span>
+        <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
-    <div class="ind-group-clients">
-      <div class="cl-name">International Research Center Ltd.</div>
-          <div class="cl-name">Pacific International</div>
+    <div class="acc-bd" id="body-11" style="display:none">
+      <div class="acc-cls" style="columns:1;column-gap:24px;">
+        <div class="acc-cl">International Research Center Ltd.</div>
+<div class="acc-cl">Pacific International</div>
+      </div>
+    </div>
+  </div>
+  <div class="acc-item" id="acc-12">
+    <div class="acc-hd" onclick="toggleAcc(12)">
+      <div class="acc-hl">
+        <div class="acc-ico">🇮🇳</div>
+        <div>
+          <div class="acc-ttl">Indian Companies</div>
+          <div class="acc-ctr">India</div>
+        </div>
+      </div>
+      <div class="acc-hr">
+        <span class="acc-badge">1 client</span>
+        <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </div>
+    <div class="acc-bd" id="body-12" style="display:none">
+      <div class="acc-cls" style="columns:1;column-gap:24px;">
+        <div class="acc-cl"><a href="https://www.saveraco.com/" target="_blank" class="cl-link">Savera (PTE) Limited</a></div>
+      </div>
     </div>
   </div>
   </div>
 </div>
+
 
 <!-- TEAM -->
 <div class="sec">
@@ -1603,6 +2139,33 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
     <p>Empowering businesses with enterprise-level ERP solutions.</p>
   </div>
 </footer>
+
+
+<script>
+function toggleAcc(idx) {
+  var item = document.getElementById('acc-' + idx);
+  var body = document.getElementById('body-' + idx);
+  var isOpen = item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.acc-item').forEach(function(el) {
+    el.classList.remove('open');
+    el.querySelector('[id^="body-"]').style.display = 'none';
+  });
+  // Open clicked if was closed
+  if (!isOpen) {
+    item.classList.add('open');
+    body.style.display = 'block';
+  }
+}
+// Open first by default
+document.addEventListener('DOMContentLoaded', function(){
+  var first = document.getElementById('acc-0');
+  if (first) {
+    first.classList.add('open');
+    document.getElementById('body-0').style.display = 'block';
+  }
+});
+</script>
 
 </body>
 </html>
