@@ -201,9 +201,9 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
 .sh-title{font-size:30px;font-weight:800;letter-spacing:-0.8px;color:#0D1B2A;line-height:1.15;margin-bottom:10px;}
 .sec-dark .sh-title,.sec.sec-dark .sh-title,.why-sec .sh-title{color:#ffffff;}
 .sec:not(.sec-dark):not(.sec-alt) .sh-title{color:var(--ink);}
-.sec-dark .sh-title,.why-sec .sh-title,.process-sec .sh-title{color:#ffffff!important;}
+.sec-dark .sh-title,.why-sec .sh-title{color:#ffffff!important;}
 .sh-sub{font-size:15.5px;color:var(--muted);line-height:1.75;max-width:560px;}
-.sec-dark .sh-sub,.why-sec .sh-sub,.process-sec .sh-sub{color:rgba(255,255,255,0.65)!important;}
+.sec-dark .sh-sub,.why-sec .sh-sub{color:rgba(255,255,255,0.65)!important;}
 
 /* ── About ── */
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
@@ -408,7 +408,8 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
 
 /* ── PDF btn ── */
 .pdf-btn{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;align-items:center;gap:8px;background:var(--blue);color:#fff;border:none;border-radius:50px;padding:12px 20px;font-size:13.5px;font-weight:700;cursor:pointer;box-shadow:0 4px 20px rgba(26,114,232,0.4);text-decoration:none;}
-@media(max-width:480px){.pdf-btn{bottom:12px;right:12px;padding:10px 14px;font-size:12px;gap:6px;}.pdf-btn span{display:none;}}
+@media(max-width:680px){.pdf-btn{display:none!important;}}
+@media(max-width:768px){.pdf-btn{display:none!important;}}
 .pdf-btn svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 
 @media print{
@@ -887,7 +888,7 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
 }
 
 /* ══ OUR PROCESS — Horizontal Timeline ══ */
-.process-sec{background:var(--bg);}
+.process-sec{}
 .timeline{
   position:relative;
   display:grid;
@@ -925,9 +926,30 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
 @media(max-width:768px){
   .timeline{grid-template-columns:1fr 1fr;gap:24px 16px;}
   .timeline-track{display:none;}
+  .timeline-step{position:relative;}
+  .timeline-step::before{
+    content:'';position:absolute;
+    left:50%;top:60px;width:2px;height:calc(100% + 24px);
+    background:linear-gradient(180deg,var(--blue),var(--cyan));
+    transform:translateX(-50%);opacity:0.3;
+    display:none;
+  }
 }
 @media(max-width:480px){
-  .timeline{grid-template-columns:1fr;}
+  .timeline{grid-template-columns:1fr;gap:0;}
+  .timeline-step{
+    display:flex;align-items:flex-start;gap:16px;
+    padding-bottom:24px;position:relative;
+  }
+  .timeline-step::after{
+    content:'';position:absolute;
+    left:29px;top:60px;width:2px;bottom:0;
+    background:linear-gradient(180deg,var(--blue),var(--cyan));
+    opacity:0.25;
+  }
+  .timeline-step:last-child::after{display:none;}
+  .tl-dot{margin-bottom:0;flex-shrink:0;}
+  .tl-card{text-align:left;}
 }
 
 
@@ -962,7 +984,7 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
 .cstat span{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
 
 /* ── Accordion ── */
-.accordion{display:flex;flex-direction:column;gap:8px;}
+.accordion{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:start;}
 
 .acc-item{
   background:var(--bg);border:1px solid var(--line);
@@ -1366,9 +1388,469 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
   .why-new-grid{grid-template-columns:1fr;}
 }
 
+
+/* ══ CLIENTS — Premium Redesign ══ */
+.clients-sec{background:var(--bg);}
+.clients-header{margin-bottom:32px;}
+
+/* Premium stats bar */
+.cl-stats-premium{
+  display:flex;align-items:center;
+  background:linear-gradient(135deg,var(--cover) 0%,#0D2A50 100%);
+  border-radius:16px;
+  padding:28px 40px;
+  margin-bottom:36px;
+  gap:0;
+  border:1px solid rgba(26,179,217,0.15);
+  position:relative;overflow:hidden;
+}
+.cl-stats-premium::before{
+  content:'';position:absolute;right:-60px;top:-60px;
+  width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle,rgba(26,179,217,0.08) 0%,transparent 70%);
+}
+.cl-stats-premium::after{
+  content:'';position:absolute;left:0;bottom:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),transparent);
+}
+.cl-stat-p{flex:1;text-align:center;padding:8px 0;}
+.cl-stat-p-v{
+  font-size:36px;font-weight:900;line-height:1;margin-bottom:6px;
+  background:linear-gradient(135deg,#fff,var(--cyan));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.cl-stat-p-l{
+  font-size:10px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:rgba(255,255,255,0.4);
+}
+.cl-stat-divider{width:1px;height:48px;background:rgba(255,255,255,0.1);flex-shrink:0;}
+
+/* Accordion items */
+.accordion{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:start;}
+
+.acc-item{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  overflow:hidden;
+  transition:border-color .2s,box-shadow .2s;
+}
+.acc-item:hover{border-color:rgba(26,114,232,0.2);box-shadow:0 2px 12px rgba(26,114,232,0.07);}
+.acc-item.open{
+  border-color:rgba(26,114,232,0.35);
+  box-shadow:0 4px 24px rgba(26,114,232,0.1);
+  grid-column:span 2;
+}
+
+.acc-hd{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 22px;cursor:pointer;
+  user-select:none;transition:background .15s;
+}
+.acc-hd:hover{background:var(--bg2);}
+.acc-item.open .acc-hd{
+  background:linear-gradient(135deg,#071525 0%,#0D2A50 100%);
+}
+
+.acc-hl{display:flex;align-items:center;gap:14px;}
+
+.acc-ico{
+  width:44px;height:44px;border-radius:12px;
+  background:var(--bg2);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+  transition:background .15s,border-color .15s;
+}
+.acc-item.open .acc-ico{
+  background:rgba(255,255,255,0.06);
+  border-color:rgba(255,255,255,0.1);
+}
+
+.acc-ttl{font-size:14.5px;font-weight:700;color:var(--ink);transition:color .15s;}
+.acc-ctr{font-size:10px;font-weight:600;color:var(--muted);margin-top:2px;transition:color .15s;}
+.acc-item.open .acc-ttl{color:#fff;}
+.acc-item.open .acc-ctr{color:var(--cyan);}
+
+.acc-hr{display:flex;align-items:center;gap:12px;}
+
+.acc-badge{
+  font-size:10.5px;font-weight:700;
+  padding:4px 12px;border-radius:20px;border:1px solid;
+  white-space:nowrap;
+}
+
+.acc-arr{
+  color:var(--muted);flex-shrink:0;
+  transition:transform .25s,color .15s;
+}
+.acc-item.open .acc-arr{transform:rotate(180deg);color:#fff;}
+
+/* Body */
+.acc-bd{border-top:1px solid var(--line);background:#fff;}
+.acc-item.open .acc-bd{border-top-color:rgba(26,114,232,0.1);}
+
+.acc-cls{padding:16px 22px 20px;}
+
+.acc-cl{
+  font-size:13px;color:var(--body);
+  padding:8px 0 8px 20px;
+  border-bottom:1px solid var(--bg2);
+  position:relative;line-height:1.4;
+  break-inside:avoid;
+  transition:color .15s;
+}
+.acc-cl:last-child{border-bottom:none;}
+.acc-cl::before{
+  content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:6px;height:6px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--cyan));
+}
+.acc-cl:hover{color:var(--blue);}
+.acc-cl a,.cl-link{color:inherit;text-decoration:none;}
+.acc-cl:hover a,.acc-cl:hover .cl-link{color:var(--blue);}
+
+@media(max-width:768px){
+  .cl-stats-premium{padding:20px 16px;border-radius:12px;}
+  .cl-stat-p-v{font-size:26px;}
+  .accordion{grid-template-columns:1fr;}
+  .acc-item.open{grid-column:span 1;}
+  .acc-hd{padding:13px 16px;}
+  .acc-ico{width:38px;height:38px;font-size:18px;}
+  .acc-cls{columns:1!important;}
+}
+@media(max-width:480px){
+  .cl-stats-premium{flex-wrap:wrap;gap:16px;}
+  .cl-stat-divider{display:none;}
+  .cl-stat-p{flex:1 1 40%;text-align:left;}
+  .acc-badge{display:none;}
+}
+
+
+/* ══ WHATSAPP ROW ══ */
+.wa-row{
+  display:flex;align-items:center;justify-content:space-between;
+  background:linear-gradient(135deg,#f0fdf4,#dcfce7);
+  border:1px solid rgba(37,211,102,0.25);
+  border-radius:var(--r-md);
+  padding:16px 22px;
+  margin:14px 0;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.wa-label{
+  display:flex;align-items:center;gap:10px;
+  font-size:14px;font-weight:700;color:#15803D;
+}
+.wa-icon-wrap{
+  width:36px;height:36px;border-radius:50%;
+  background:#25D366;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;flex-shrink:0;
+}
+.wa-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.wa-btn{
+  display:flex;align-items:center;gap:7px;
+  background:#25D366;color:#fff;
+  padding:9px 18px;border-radius:8px;
+  font-size:13.5px;font-weight:600;
+  text-decoration:none;
+  transition:background .2s,transform .15s;
+  white-space:nowrap;
+}
+.wa-btn:hover{background:#1EB35A;transform:translateY(-1px);}
+
+@media(max-width:600px){
+  .wa-row{flex-direction:column;align-items:flex-start;}
+  .wa-btns{width:100%;}
+  .wa-btn{flex:1;justify-content:center;}
+}
+
+
+/* ══ STICKY NAV ══ */
+.sticky-nav{
+  position:fixed;top:0;left:0;right:0;z-index:10000;
+  background:rgba(7,21,37,0.95);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(26,179,217,0.15);
+  box-shadow:0 2px 20px rgba(0,0,0,0.4);
+  transform:translateY(-100%);
+  transition:transform .3s ease;
+}
+.sticky-nav.visible{transform:translateY(0);}
+.snav-inner{
+  display:flex;align-items:center;
+  padding:0 40px;height:52px;gap:8px;
+}
+.snav-logo{margin-right:16px;flex-shrink:0;}
+.snav-brand{
+  font-size:16px;font-weight:800;color:#fff;
+  letter-spacing:-0.3px;
+}
+.snav-dot{color:var(--cyan);}
+.snav-links{
+  display:flex;align-items:center;gap:4px;flex:1;
+  overflow:hidden;
+}
+.snav-link{
+  font-size:12px;font-weight:600;color:rgba(255,255,255,0.55);
+  text-decoration:none;padding:5px 10px;border-radius:6px;
+  white-space:nowrap;
+  transition:color .15s,background .15s;
+}
+.snav-link:hover,.snav-link.active{
+  color:#fff;background:rgba(255,255,255,0.08);
+}
+.snav-link.active{color:var(--cyan);}
+.snav-pdf{
+  display:flex;align-items:center;gap:6px;
+  font-size:11.5px;font-weight:700;color:var(--cyan);
+  background:rgba(26,179,217,0.1);border:1px solid rgba(26,179,217,0.25);
+  padding:5px 12px;border-radius:6px;text-decoration:none;
+  flex-shrink:0;margin-left:8px;white-space:nowrap;
+  transition:background .15s;
+}
+.snav-pdf:hover{background:rgba(26,179,217,0.2);}
+.snav-hamburger{
+  display:none;flex-direction:column;gap:5px;
+  background:none;border:none;cursor:pointer;padding:4px;
+  margin-left:8px;flex-shrink:0;
+}
+.snav-hamburger span{
+  display:block;width:22px;height:2px;
+  background:rgba(255,255,255,0.7);border-radius:2px;
+  transition:transform .25s,opacity .25s;
+}
+.snav-mobile{
+  display:none;flex-direction:column;
+  background:rgba(7,21,37,0.98);
+  border-top:1px solid rgba(255,255,255,0.06);
+  padding:8px 16px 16px;
+}
+.snav-mobile.open{display:flex;}
+.snav-mobile-link{
+  font-size:14px;font-weight:600;color:rgba(255,255,255,0.7);
+  text-decoration:none;padding:11px 0;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  transition:color .15s;
+}
+.snav-mobile-link:last-child{border-bottom:none;}
+.snav-mobile-link:hover{color:var(--cyan);}
+
+/* Push body down so content not hidden under nav */
+body{scroll-padding-top:60px;}
+section,div[id]{scroll-margin-top:60px;}
+
+@media(max-width:900px){
+  .snav-links{display:none;}
+  .snav-hamburger{display:flex;}
+  .snav-inner{padding:0 20px;}
+  .snav-pdf{display:none;}
+}
+@media print{.sticky-nav{display:none!important;}}
+
+
+/* ══ STICKY NAVIGATION ══ */
+.sticky-nav{
+  position:fixed;top:0;left:0;right:0;
+  z-index:9998;
+  background:rgba(7,21,37,0.92);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(26,179,217,0.15);
+  transform:translateY(-100%);
+  transition:transform .3s ease;
+}
+.sticky-nav.visible{transform:translateY(0);}
+.snav-inner{
+  max-width:1400px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 40px;gap:16px;
+}
+.snav-logo{
+  font-size:16px;font-weight:800;color:#fff;
+  letter-spacing:-0.3px;flex-shrink:0;
+}
+.snav-links{
+  display:flex;align-items:center;gap:4px;flex-wrap:nowrap;
+}
+.snav-link{
+  font-size:12.5px;font-weight:600;color:rgba(255,255,255,0.6);
+  text-decoration:none;padding:6px 12px;border-radius:6px;
+  transition:color .15s,background .15s;white-space:nowrap;
+}
+.snav-link:hover,.snav-link.active{color:#fff;background:rgba(255,255,255,0.07);}
+.snav-link.active{color:var(--cyan);}
+.snav-cta{
+  font-size:12.5px;font-weight:700;color:#fff;
+  text-decoration:none;padding:7px 16px;border-radius:20px;
+  background:var(--blue);margin-left:8px;
+  transition:background .2s;white-space:nowrap;flex-shrink:0;
+}
+.snav-cta:hover{background:var(--blue-dk);}
+.snav-toggle{
+  display:none;background:none;border:none;
+  color:#fff;cursor:pointer;padding:4px;
+}
+
+@media(max-width:900px){
+  .snav-inner{padding:10px 20px;}
+  .snav-link{padding:6px 8px;font-size:12px;}
+}
+@media(max-width:680px){
+  .snav-toggle{display:flex;align-items:center;justify-content:center;}
+  .snav-links{
+    display:none;position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;align-items:stretch;
+    background:rgba(7,21,37,0.97);
+    padding:12px 20px 20px;gap:2px;
+    border-bottom:1px solid rgba(26,179,217,0.15);
+  }
+  .snav-links.open{display:flex;}
+  .snav-link{padding:10px 12px;border-radius:8px;}
+  .snav-cta{margin:8px 0 0;padding:11px 16px;border-radius:8px;text-align:center;}
+}
+/* Push content down when nav visible - not needed since nav is overlay */
+
+
+.snav-pdf{
+  display:flex;align-items:center;gap:5px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.15);
+  color:rgba(255,255,255,0.7);
+  padding:6px 12px;border-radius:20px;
+  font-size:12px;font-weight:600;cursor:pointer;
+  transition:background .2s,color .2s;margin-left:4px;
+}
+.snav-pdf:hover{background:rgba(255,255,255,0.15);color:#fff;}
+@media(max-width:680px){.snav-pdf{display:none;}}
+
+
+.kval-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.kcard-wa{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:11.5px;font-weight:600;color:#25D366;
+  text-decoration:none;padding:3px 10px;
+  border:1px solid rgba(37,211,102,0.3);
+  border-radius:20px;background:rgba(37,211,102,0.06);
+  transition:background .2s;white-space:nowrap;
+}
+.kcard-wa:hover{background:rgba(37,211,102,0.15);}
+
+
+.kcard-info{display:flex;flex-direction:column;gap:1px;}
+.kwa-link{
+  display:inline-flex;align-items:center;gap:5px;
+  margin-top:6px;
+  font-size:12px;font-weight:600;color:#15803D;
+  text-decoration:none;
+  transition:color .15s;
+}
+.kwa-link:hover{color:#25D366;}
+
+
+/* ══ DOWNLOAD GROUP ══ */
+.dl-group{
+  position:fixed;bottom:24px;right:24px;
+  display:flex;flex-direction:column;gap:8px;
+  z-index:9999;
+}
+.dl-btn{
+  display:flex;align-items:center;gap:8px;
+  border:none;border-radius:50px;
+  padding:11px 20px;
+  font-size:13px;font-weight:700;
+  cursor:pointer;white-space:nowrap;
+  transition:transform .15s,box-shadow .2s;
+  text-decoration:none;
+}
+.dl-btn:hover{transform:translateY(-2px);}
+.dl-pdf{
+  background:var(--blue);color:#fff;
+  box-shadow:0 4px 16px rgba(26,114,232,0.4);
+}
+.dl-pdf:hover{box-shadow:0 8px 24px rgba(26,114,232,0.5);}
+.dl-html{
+  background:#fff;color:var(--ink);
+  border:1px solid var(--line);
+  box-shadow:0 2px 12px rgba(13,27,42,0.1);
+}
+.dl-html:hover{box-shadow:0 6px 20px rgba(13,27,42,0.15);}
+@media(max-width:680px){
+  .dl-group{bottom:16px;right:16px;}
+  .dl-btn{padding:10px 14px;font-size:12px;}
+}
+@media print{.dl-group{display:none!important;}}
+
 </style>
 </head>
 <body>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav" id="stickyNav">
+  <div class="snav-inner">
+    <div class="snav-logo">Blupoint</div>
+    <button class="snav-toggle" onclick="toggleMobileNav()" aria-label="Menu">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <div class="snav-links" id="snavLinks">
+      <a href="#about-sec"      class="snav-link">About</a>
+      <a href="#sec-process"    class="snav-link">Process</a>
+      <a href="#sec-platforms"  class="snav-link">Platforms</a>
+      <a href="#sec-comparison" class="snav-link">Compare</a>
+      <a href="#clients-sec"    class="snav-link">Clients</a>
+      <a href="#team-sec"       class="snav-link">Team</a>
+      <a href="#sec-offices"    class="snav-link">Offices</a>
+      <a href="#contact-sec"    class="snav-link">Contact</a>
+      <a href="#contact-sec" class="snav-cta">Get a Demo</a>
+      <button onclick="window.print()" class="snav-pdf" title="Download PDF">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        PDF
+      </button>
+    </div>
+  </div>
+</nav>
+
+
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav" id="stickyNav">
+  <div class="snav-inner">
+    <div class="snav-logo">
+      <span class="snav-brand">Blupoint<span class="snav-dot">.</span></span>
+    </div>
+    <div class="snav-links">
+      <a href="#" class="snav-link">Home</a>
+      <a href="#about-sec" class="snav-link">About</a>
+      <a href="#why-sec" class="snav-link">Why Us</a>
+      <a href="#platforms" class="snav-link">ERP</a>
+      <a href="#modules-sec" class="snav-link">Modules</a>
+      <a href="#comparison-sec" class="snav-link">Compare</a>
+      <a href="#clients-sec" class="snav-link">Clients</a>
+      <a href="#team-sec" class="snav-link">Team</a>
+      <a href="#contact-sec" class="snav-link">Contact</a>
+    </div>
+    <a href="javascript:window.print()" class="snav-pdf">
+      <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      PDF
+    </a>
+    <button class="snav-hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="snav-mobile" id="snavMobile">
+    <a href="#" class="snav-mobile-link" onclick="closeMobileNav()">Home</a>
+    <a href="#about-sec" class="snav-mobile-link" onclick="closeMobileNav()">About</a>
+    <a href="#why-sec" class="snav-mobile-link" onclick="closeMobileNav()">Why Us</a>
+    <a href="#platforms" class="snav-mobile-link" onclick="closeMobileNav()">ERP Platforms</a>
+    <a href="#modules-sec" class="snav-mobile-link" onclick="closeMobileNav()">Modules</a>
+    <a href="#comparison-sec" class="snav-mobile-link" onclick="closeMobileNav()">Comparison</a>
+    <a href="#clients-sec" class="snav-mobile-link" onclick="closeMobileNav()">Clients</a>
+    <a href="#team-sec" class="snav-mobile-link" onclick="closeMobileNav()">Team</a>
+    <a href="#contact-sec" class="snav-mobile-link" onclick="closeMobileNav()">Contact</a>
+    <a href="javascript:window.print()" class="snav-mobile-link">Download PDF</a>
+  </div>
+</nav>
+
 
 <!-- ═══ COVER ═══ -->
 <div class="cover">
@@ -1651,7 +2133,7 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
       <span class="cf-dot">·</span>
       <a href="tel:+966538705941">+966 53 870 5941</a>
       <span class="cf-dot">·</span>
-      <a href="mailto:hello@blupointai.com">hello@blupointai.com</a>
+      <a href="mailto:info@blupointai.com">info@blupointai.com</a>
       <span class="cf-dot">·</span>
       <a href="https://blupointai.com" target="_blank">www.blupointai.com</a>
       <span class="cf-dot">·</span>
@@ -1663,7 +2145,7 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
 <div class="rule"></div>
 
 <!-- ABOUT -->
-<div class="sec" style="background:var(--bg);">
+<div id="about-sec" class="sec" style="background:var(--bg);">
   <div class="about-new-layout">
     <div class="about-left">
       <span class="sh-lbl">About Blupoint</span>
@@ -1714,7 +2196,7 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
 </div>
 
 <!-- WHY CHOOSE US -->
-<div class="sec sec-dark why-sec">
+<div id="why-sec" class="sec sec-dark why-sec">
   <div class="sh">
     <span class="sh-lbl">Why Blupoint</span>
     <h2 class="sh-title">Why Businesses Choose Us</h2>
@@ -1784,7 +2266,7 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
   </div>
 </div>
 <!-- HOW WE WORK -->
-<div class="sec process-sec">
+<div id="sec-process" class="sec sec-alt process-sec">
   <div class="sh">
     <span class="sh-lbl">Our Process</span>
     <h2 class="sh-title">How We Work</h2>
@@ -1825,7 +2307,7 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
 </div>
 
 <!-- PRODUCTS -->
-<div class="sec" id="platforms">
+<div id="sec-platforms" class="sec" id="platforms">
   <div class="sh"><span class="sh-lbl">ERP Platforms</span><h2 class="sh-title">Two Enterprise-Level ERP Solutions</h2><p class="sh-sub">Both platforms are fully customized to your workflows, cloud-hosted, and backed by our dedicated team.</p></div>
   <div class="pgrid">
     <div class="pcard">
@@ -1854,7 +2336,7 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
 </div>
 
 <!-- MODULES -->
-<div class="sec sec-alt">
+<div id="modules-sec" class="sec sec-alt">
   <div class="sh"><span class="sh-lbl">ERP Modules</span><h2 class="sh-title">One Platform for Every Core Function</h2><p class="sh-sub">Both platforms cover all core business functions in a single connected system.</p></div>
   <div class="mgrid">
     <div class="mcard"><div class="mnum">Module 01</div><div class="mico"><svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
@@ -1954,7 +2436,7 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
 
 
 <!-- COMPARISON -->
-<div class="sec">
+<div id="comparison-sec" class="sec">
   <div class="sh">
     <span class="sh-lbl">Why Blupoint</span>
     <h2 class="sh-title">How We Compare to Industry Giants</h2>
@@ -1990,88 +2472,42 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
           </th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
+      <tbody><tr>
           <td class="cmp-feature">Implementation Cost</td>
           <td class="cmp-bp"><span class="cmp-yes">✓</span> Low</td>
           <td><span class="cmp-no">✗</span> Very High</td>
           <td><span class="cmp-no">✗</span> Very High</td>
           <td><span class="cmp-mid">~</span> Medium</td>
-          <td><span class="cmp-no">✗</span> High</td>
-        </tr>
-        <tr class="cmp-alt">
-          <td class="cmp-feature">Custom Industry Workflows</td>
-          <td class="cmp-bp"><span class="cmp-yes">✓</span> Full Custom</td>
-          <td><span class="cmp-mid">~</span> Partial</td>
-          <td><span class="cmp-mid">~</span> Partial</td>
-          <td><span class="cmp-mid">~</span> Limited</td>
-          <td><span class="cmp-mid">~</span> Partial</td>
-        </tr>
-        <tr>
+          
+        </tr><tr>
           <td class="cmp-feature">Implementation Time</td>
           <td class="cmp-bp"><span class="cmp-yes">✓</span> Weeks</td>
           <td><span class="cmp-no">✗</span> 12–18 Months</td>
           <td><span class="cmp-no">✗</span> 6–12 Months</td>
           <td><span class="cmp-mid">~</span> 3–6 Months</td>
-          <td><span class="cmp-no">✗</span> 6–12 Months</td>
-        </tr>
-        <tr class="cmp-alt">
-          <td class="cmp-feature">Dedicated Local Support</td>
-          <td class="cmp-bp"><span class="cmp-yes">✓</span> Yes — Dedicated</td>
-          <td><span class="cmp-no">✗</span> Partner-based</td>
-          <td><span class="cmp-no">✗</span> Partner-based</td>
-          <td><span class="cmp-mid">~</span> Online only</td>
-          <td><span class="cmp-no">✗</span> Partner-based</td>
-        </tr>
-        <tr>
+          
+        </tr><tr>
           <td class="cmp-feature">Cloud-Hosted</td>
           <td class="cmp-bp"><span class="cmp-yes">✓</span> 100% Cloud</td>
           <td><span class="cmp-yes">✓</span> Yes</td>
           <td><span class="cmp-yes">✓</span> Yes</td>
           <td><span class="cmp-yes">✓</span> Yes</td>
-          <td><span class="cmp-yes">✓</span> Yes</td>
-        </tr>
-        <tr class="cmp-alt">
-          <td class="cmp-feature">SME-Friendly</td>
-          <td class="cmp-bp"><span class="cmp-yes">✓</span> Built for SMEs</td>
-          <td><span class="cmp-no">✗</span> Enterprise only</td>
-          <td><span class="cmp-no">✗</span> Enterprise only</td>
-          <td><span class="cmp-yes">✓</span> Yes</td>
-          <td><span class="cmp-mid">~</span> Partial</td>
-        </tr>
-        <tr>
+          
+        </tr><tr>
           <td class="cmp-feature">Pakistan / Gulf Region Support</td>
           <td class="cmp-bp"><span class="cmp-yes">✓</span> Native</td>
           <td><span class="cmp-no">✗</span> Limited</td>
           <td><span class="cmp-no">✗</span> Limited</td>
           <td><span class="cmp-mid">~</span> Online</td>
-          <td><span class="cmp-mid">~</span> Partner</td>
-        </tr>
-        <tr class="cmp-alt">
-          <td class="cmp-feature">Industry-Specific Modules</td>
-          <td class="cmp-bp"><span class="cmp-yes">✓</span> Yes — 9 Modules</td>
-          <td><span class="cmp-yes">✓</span> Yes</td>
-          <td><span class="cmp-yes">✓</span> Yes</td>
-          <td><span class="cmp-mid">~</span> Generic</td>
-          <td><span class="cmp-yes">✓</span> Yes</td>
-        </tr>
-        <tr>
+          
+        </tr><tr>
           <td class="cmp-feature">Odoo Certified Partner</td>
           <td class="cmp-bp"><span class="cmp-yes">✓</span> Yes</td>
           <td><span class="cmp-no">✗</span> No</td>
           <td><span class="cmp-no">✗</span> No</td>
           <td><span class="cmp-no">✗</span> No</td>
-          <td><span class="cmp-no">✗</span> No</td>
-        </tr>
-        <tr class="cmp-alt">
-          <td class="cmp-feature">Training &amp; Onboarding</td>
-          <td class="cmp-bp"><span class="cmp-yes">✓</span> Included</td>
-          <td><span class="cmp-no">✗</span> Extra Cost</td>
-          <td><span class="cmp-no">✗</span> Extra Cost</td>
-          <td><span class="cmp-mid">~</span> Self-serve</td>
-          <td><span class="cmp-no">✗</span> Extra Cost</td>
-        </tr>
-      </tbody>
+          
+        </tr></tbody>
     </table>
   </div>
 
@@ -2087,7 +2523,7 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
 
 
 <!-- TESTIMONIALS -->
-<div class="sec sec-dark">
+<div id="sec-testimonials" class="sec sec-dark">
   <div class="sh"><span class="sh-lbl">Testimonials</span><h2 class="sh-title">Trusted by Businesses Across Industries</h2><p class="sh-sub">Our clients value structured workflows, reliable performance, and industry-specific customization.</p></div>
   <div class="tgrid">
     <div class="tcard"><div class="tstars">★★★★★</div><p class="ttext">Extremely satisfied with our custom ERP. The system perfectly integrated operations, boosting efficiency and reporting. Technical expertise exceeded all expectations.</p><div class="tline"></div><p class="tname">Mr. Ali S. A. Yousif</p><p class="tco">CEO — White Star Sea General Trading LLC</p></div>
@@ -2097,341 +2533,367 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
 </div>
 
 <!-- CLIENTS -->
-<div class="sec sec-alt">
-  <div class="sh">
-    <span class="sh-lbl">Our Clients</span>
-    <h2 class="sh-title">Companies that Trust Blupoint</h2>
-    <p class="sh-sub">Businesses across 13 industries and 4 countries trust Blupoint as their ERP partner.</p>
+<div id="clients-sec" class="sec clients-sec">
+
+  <!-- Section header -->
+  <div class="clients-header">
+    <div>
+      <span class="sh-lbl">Our Clients</span>
+      <h2 class="sh-title">Companies that Trust Blupoint</h2>
+      <p class="sh-sub">Businesses across 13 industries and 4 countries trust Blupoint as their ERP partner.</p>
+    </div>
   </div>
 
-  <!-- Stats -->
-  <div class="cl-stats">
-    <div class="cl-stat"><div class="cl-stat-v">65+</div><div class="cl-stat-l">Total Clients</div></div>
-    <div class="cl-stat"><div class="cl-stat-v">13</div><div class="cl-stat-l">Industries</div></div>
-    <div class="cl-stat"><div class="cl-stat-v">4</div><div class="cl-stat-l">Countries</div></div>
-    <div class="cl-stat"><div class="cl-stat-v">10+</div><div class="cl-stat-l">Years Experience</div></div>
+  <!-- Premium stats bar -->
+  <div class="cl-stats-premium">
+    <div class="cl-stat-p">
+      <div class="cl-stat-p-v">65+</div>
+      <div class="cl-stat-p-l">Total Clients</div>
+    </div>
+    <div class="cl-stat-divider"></div>
+    <div class="cl-stat-p">
+      <div class="cl-stat-p-v">13</div>
+      <div class="cl-stat-p-l">Industries</div>
+    </div>
+    <div class="cl-stat-divider"></div>
+    <div class="cl-stat-p">
+      <div class="cl-stat-p-v">4</div>
+      <div class="cl-stat-p-l">Countries</div>
+    </div>
+    <div class="cl-stat-divider"></div>
+    <div class="cl-stat-p">
+      <div class="cl-stat-p-v">10+</div>
+      <div class="cl-stat-p-l">Years</div>
+    </div>
   </div>
 
   <!-- Accordion -->
   <div class="accordion">
-  <div class="acc-item" id="acc-0">
+  <div class="acc-item  acc-item-open" id="acc-0">
     <div class="acc-hd" onclick="toggleAcc(0)">
       <div class="acc-hl">
-        <div class="acc-ico">🏗️</div>
+        <div class="acc-ico" style="--acc-clr:#3B82F6">🏗️</div>
         <div>
-          <div class="acc-ttl">Construction Industry</div>
-          <div class="acc-ctr">Pakistan</div>
+          <div class="acc-ttl">Construction</div>
+          <div class="acc-ctr">🇵🇰 Pakistan</div>
         </div>
       </div>
       <div class="acc-hr">
-        <span class="acc-badge">4 clients</span>
+        <span class="acc-badge" style="color:#3B82F6;background:#3B82F618;border-color:#3B82F633">4 clients</span>
         <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
-    <div class="acc-bd" id="body-0" style="display:none">
-      <div class="acc-cls" style="columns:1;column-gap:24px;">
+    <div class="acc-bd" id="body-0" style="display:block">
+      <div class="acc-cls" style="columns:1;column-gap:28px;">
         <div class="acc-cl"><a href="https://al-rehmanenterprises.com/" target="_blank" class="cl-link">Al Rehman Enterprises (Pvt.) Ltd.</a></div>
-<div class="acc-cl">Dughal and Company (Pvt.) Ltd.</div>
-<div class="acc-cl">Aslam Pervaiz and Company (Pvt.) Ltd.</div>
-<div class="acc-cl"><a href="https://www.ftcpvt.com/" target="_blank" class="cl-link">Fast Track Construction (Pvt.) Ltd.</a></div>
+        <div class="acc-cl">Dughal and Company (Pvt.) Ltd.</div>
+        <div class="acc-cl">Aslam Pervaiz and Company (Pvt.) Ltd.</div>
+        <div class="acc-cl"><a href="https://www.ftcpvt.com/" target="_blank" class="cl-link">Fast Track Construction (Pvt.) Ltd.</a></div>
       </div>
     </div>
   </div>
   <div class="acc-item" id="acc-1">
     <div class="acc-hd" onclick="toggleAcc(1)">
       <div class="acc-hl">
-        <div class="acc-ico">🧴</div>
+        <div class="acc-ico" style="--acc-clr:#F59E0B">🫙</div>
         <div>
-          <div class="acc-ttl">Ghee &amp; Oil Industry</div>
-          <div class="acc-ctr">Pakistan</div>
+          <div class="acc-ttl">Ghee &amp; Oil</div>
+          <div class="acc-ctr">🇵🇰 Pakistan</div>
         </div>
       </div>
       <div class="acc-hr">
-        <span class="acc-badge">6 clients</span>
+        <span class="acc-badge" style="color:#F59E0B;background:#F59E0B18;border-color:#F59E0B33">6 clients</span>
         <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
     <div class="acc-bd" id="body-1" style="display:none">
-      <div class="acc-cls" style="columns:2;column-gap:24px;">
+      <div class="acc-cls" style="columns:2;column-gap:28px;">
         <div class="acc-cl"><a href="https://mmgoc.com.pk/" target="_blank" class="cl-link">MM Ghee Mills (Pvt.) Ltd.</a></div>
-<div class="acc-cl">Trade Star (PTE) Limited</div>
-<div class="acc-cl"><a href="https://awgroup.com.pk/#Our-Brand" target="_blank" class="cl-link">HM Extraction (Pvt.) Ltd.</a></div>
-<div class="acc-cl">Agro Trade Enterprises</div>
-<div class="acc-cl">Agro Star (Pvt.) Ltd.</div>
-<div class="acc-cl"><a href="https://awgroup.com.pk/#Our-Brand" target="_blank" class="cl-link">HM Extraction (Pvt.) Ltd.</a></div>
+        <div class="acc-cl">Trade Star (PTE) Limited</div>
+        <div class="acc-cl"><a href="https://awgroup.com.pk/#Our-Brand" target="_blank" class="cl-link">HM Extraction (Pvt.) Ltd.</a></div>
+        <div class="acc-cl">Agro Trade Enterprises</div>
+        <div class="acc-cl">Agro Star (Pvt.) Ltd.</div>
+        <div class="acc-cl">Abdul Waheed Group of Industries</div>
       </div>
     </div>
   </div>
   <div class="acc-item" id="acc-2">
     <div class="acc-hd" onclick="toggleAcc(2)">
       <div class="acc-hl">
-        <div class="acc-ico">🧵</div>
+        <div class="acc-ico" style="--acc-clr:#8B5CF6">🧵</div>
         <div>
-          <div class="acc-ttl">Textile Industry</div>
-          <div class="acc-ctr">Pakistan</div>
+          <div class="acc-ttl">Textile</div>
+          <div class="acc-ctr">🇵🇰 Pakistan</div>
         </div>
       </div>
       <div class="acc-hr">
-        <span class="acc-badge">8 clients</span>
+        <span class="acc-badge" style="color:#8B5CF6;background:#8B5CF618;border-color:#8B5CF633">10 clients</span>
         <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
     <div class="acc-bd" id="body-2" style="display:none">
-      <div class="acc-cls" style="columns:2;column-gap:24px;">
+      <div class="acc-cls" style="columns:2;column-gap:28px;">
         <div class="acc-cl">Asghar Fabrics (Pvt.) Ltd.</div>
-<div class="acc-cl">Pakistan Dying (Pvt.) Ltd.</div>
-<div class="acc-cl">ASE Apparel (Pvt.) Ltd.</div>
-<div class="acc-cl">United Textiles (Pvt.) Ltd.</div>
-<div class="acc-cl">MWM Textiles (Pvt.) Ltd.</div>
-<div class="acc-cl">Get Smart Hosiery (Pvt.) Ltd.</div>
-<div class="acc-cl">Ghumman Dying (Pvt.) Ltd.</div>
-<div class="acc-cl">Jamal Textile Industries (Pvt.) Ltd.</div>
+        <div class="acc-cl">Pakistan Dying (Pvt.) Ltd.</div>
+        <div class="acc-cl">ASE Apparel (Pvt.) Ltd.</div>
+        <div class="acc-cl">United Textiles (Pvt.) Ltd.</div>
+        <div class="acc-cl">MWM Textiles (Pvt.) Ltd.</div>
+        <div class="acc-cl">Get Smart Hosiery (Pvt.) Ltd.</div>
+        <div class="acc-cl">Ghumman Dying (Pvt.) Ltd.</div>
+        <div class="acc-cl">Jamal Textile Industries (Pvt.) Ltd.</div>
+<div class="acc-cl">Samtex Textiles (Pvt.) Ltd.</div>
+<div class="acc-cl">Ess Arr Exports (Pvt.) Ltd.</div>
       </div>
     </div>
   </div>
   <div class="acc-item" id="acc-3">
     <div class="acc-hd" onclick="toggleAcc(3)">
       <div class="acc-hl">
-        <div class="acc-ico">🏥</div>
+        <div class="acc-ico" style="--acc-clr:#EF4444">🏥</div>
         <div>
-          <div class="acc-ttl">Hospital &amp; Medicine</div>
-          <div class="acc-ctr">Pakistan</div>
+          <div class="acc-ttl">Healthcare</div>
+          <div class="acc-ctr">🇵🇰 Pakistan</div>
         </div>
       </div>
       <div class="acc-hr">
-        <span class="acc-badge">7 clients</span>
+        <span class="acc-badge" style="color:#EF4444;background:#EF444418;border-color:#EF444433">7 clients</span>
         <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
     <div class="acc-bd" id="body-3" style="display:none">
-      <div class="acc-cls" style="columns:2;column-gap:24px;">
+      <div class="acc-cls" style="columns:2;column-gap:28px;">
         <div class="acc-cl">Al Mustafa Trust Hospital</div>
-<div class="acc-cl">Shah Traders</div>
-<div class="acc-cl">Pak Green Pharmacy</div>
-<div class="acc-cl">Pakistra (Pvt.) Ltd.</div>
-<div class="acc-cl">Prime Radiology Center</div>
-<div class="acc-cl">New Pakistan Medical Store</div>
-<div class="acc-cl">Ameen Foundation</div>
+        <div class="acc-cl">Shah Traders</div>
+        <div class="acc-cl">Pak Green Pharmacy</div>
+        <div class="acc-cl">Pakistra (Pvt.) Ltd.</div>
+        <div class="acc-cl">Prime Radiology Center</div>
+        <div class="acc-cl">New Pakistan Medical Store</div>
+        <div class="acc-cl">Ameen Foundation</div>
       </div>
     </div>
   </div>
   <div class="acc-item" id="acc-4">
     <div class="acc-hd" onclick="toggleAcc(4)">
       <div class="acc-hl">
-        <div class="acc-ico">📦</div>
+        <div class="acc-ico" style="--acc-clr:#0F7A60">📦</div>
         <div>
-          <div class="acc-ttl">Packaging Industry</div>
-          <div class="acc-ctr">Pakistan</div>
+          <div class="acc-ttl">Packaging</div>
+          <div class="acc-ctr">🇵🇰 Pakistan</div>
         </div>
       </div>
       <div class="acc-hr">
-        <span class="acc-badge">4 clients</span>
+        <span class="acc-badge" style="color:#0F7A60;background:#0F7A6018;border-color:#0F7A6033">4 clients</span>
         <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
     <div class="acc-bd" id="body-4" style="display:none">
-      <div class="acc-cls" style="columns:1;column-gap:24px;">
+      <div class="acc-cls" style="columns:1;column-gap:28px;">
         <div class="acc-cl">Abaan Packages (Pvt.) Ltd.</div>
-<div class="acc-cl">Pick N Pack (Pvt.) Ltd.</div>
-<div class="acc-cl">Abdullah Packages</div>
-<div class="acc-cl">Raj Packages</div>
+        <div class="acc-cl">Pick N Pack (Pvt.) Ltd.</div>
+        <div class="acc-cl">Abdullah Packages</div>
+        <div class="acc-cl">Raj Packages</div>
       </div>
     </div>
   </div>
   <div class="acc-item" id="acc-5">
     <div class="acc-hd" onclick="toggleAcc(5)">
       <div class="acc-hl">
-        <div class="acc-ico">🛒</div>
+        <div class="acc-ico" style="--acc-clr:#F97316">🛒</div>
         <div>
           <div class="acc-ttl">Retail &amp; Trading</div>
-          <div class="acc-ctr">Pakistan</div>
+          <div class="acc-ctr">🇵🇰 Pakistan</div>
         </div>
       </div>
       <div class="acc-hr">
-        <span class="acc-badge">10 clients</span>
+        <span class="acc-badge" style="color:#F97316;background:#F9731618;border-color:#F9731633">10 clients</span>
         <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
     <div class="acc-bd" id="body-5" style="display:none">
-      <div class="acc-cls" style="columns:2;column-gap:24px;">
+      <div class="acc-cls" style="columns:2;column-gap:28px;">
         <div class="acc-cl">Ajwa Sweet and Bakers</div>
-<div class="acc-cl">Al Ghufran Traders</div>
-<div class="acc-cl">Al Adan International</div>
-<div class="acc-cl">Ansari Traders</div>
-<div class="acc-cl">Four Star Dyes</div>
-<div class="acc-cl">MH Trading (Pvt.) Ltd.</div>
-<div class="acc-cl">Amam Habib Corporation</div>
-<div class="acc-cl">Hassan Traders</div>
-<div class="acc-cl">Huzaifa Electric Store</div>
-<div class="acc-cl">Iftikhar Hardware Store</div>
+        <div class="acc-cl">Al Ghufran Traders</div>
+        <div class="acc-cl">Al Adan International</div>
+        <div class="acc-cl">Ansari Traders</div>
+        <div class="acc-cl">Four Star Dyes</div>
+        <div class="acc-cl">MH Trading (Pvt.) Ltd.</div>
+        <div class="acc-cl">Amam Habib Corporation</div>
+        <div class="acc-cl">Hassan Traders</div>
+        <div class="acc-cl">Huzaifa Electric Store</div>
+        <div class="acc-cl">Iftikhar Hardware Store</div>
       </div>
     </div>
   </div>
   <div class="acc-item" id="acc-6">
     <div class="acc-hd" onclick="toggleAcc(6)">
       <div class="acc-hl">
-        <div class="acc-ico">🏠</div>
+        <div class="acc-ico" style="--acc-clr:#1AB3D9">🏠</div>
         <div>
           <div class="acc-ttl">Property &amp; Housing</div>
-          <div class="acc-ctr">Pakistan</div>
+          <div class="acc-ctr">🇵🇰 Pakistan</div>
         </div>
       </div>
       <div class="acc-hr">
-        <span class="acc-badge">4 clients</span>
+        <span class="acc-badge" style="color:#1AB3D9;background:#1AB3D918;border-color:#1AB3D933">4 clients</span>
         <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
     <div class="acc-bd" id="body-6" style="display:none">
-      <div class="acc-cls" style="columns:1;column-gap:24px;">
+      <div class="acc-cls" style="columns:1;column-gap:28px;">
         <div class="acc-cl">ARZ313 (Pvt.) Ltd.</div>
-<div class="acc-cl">Top City Housing Society</div>
-<div class="acc-cl">Aur Properties (Pvt.) Ltd.</div>
-<div class="acc-cl">Emaan City</div>
+        <div class="acc-cl">Top City Housing Society</div>
+        <div class="acc-cl">Aur Properties (Pvt.) Ltd.</div>
+        <div class="acc-cl">Emaan City</div>
       </div>
     </div>
   </div>
   <div class="acc-item" id="acc-7">
     <div class="acc-hd" onclick="toggleAcc(7)">
       <div class="acc-hl">
-        <div class="acc-ico">⚙️</div>
+        <div class="acc-ico" style="--acc-clr:#64748B">⚙️</div>
         <div>
-          <div class="acc-ttl">Brass, Plastic &amp; Aluminum</div>
-          <div class="acc-ctr">Pakistan</div>
+          <div class="acc-ttl">Brass &amp; Metals</div>
+          <div class="acc-ctr">🇵🇰 Pakistan</div>
         </div>
       </div>
       <div class="acc-hr">
-        <span class="acc-badge">5 clients</span>
+        <span class="acc-badge" style="color:#64748B;background:#64748B18;border-color:#64748B33">5 clients</span>
         <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
     <div class="acc-bd" id="body-7" style="display:none">
-      <div class="acc-cls" style="columns:1;column-gap:24px;">
+      <div class="acc-cls" style="columns:1;column-gap:28px;">
         <div class="acc-cl">Master Poly Plastic Industry Ltd.</div>
-<div class="acc-cl">Diamond Aluminum Industries</div>
-<div class="acc-cl">Union Plastic Industry</div>
-<div class="acc-cl">World Aluminum Industries</div>
-<div class="acc-cl">Nisar Steel Works</div>
+        <div class="acc-cl">Diamond Aluminum Industries</div>
+        <div class="acc-cl">Union Plastic Industry</div>
+        <div class="acc-cl">World Aluminum Industries</div>
+        <div class="acc-cl">Nisar Steel Works</div>
       </div>
     </div>
   </div>
   <div class="acc-item" id="acc-8">
     <div class="acc-hd" onclick="toggleAcc(8)">
       <div class="acc-hl">
-        <div class="acc-ico">💎</div>
+        <div class="acc-ico" style="--acc-clr:#D97706">💎</div>
         <div>
-          <div class="acc-ttl">Gold &amp; Diamond Jewelry</div>
-          <div class="acc-ctr">UAE</div>
+          <div class="acc-ttl">Jewelry</div>
+          <div class="acc-ctr">🇦🇪 UAE</div>
         </div>
       </div>
       <div class="acc-hr">
-        <span class="acc-badge">1 client</span>
+        <span class="acc-badge" style="color:#D97706;background:#D9770618;border-color:#D9770633">3 clients</span>
         <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
     <div class="acc-bd" id="body-8" style="display:none">
-      <div class="acc-cls" style="columns:1;column-gap:24px;">
+      <div class="acc-cls" style="columns:1;column-gap:28px;">
         <div class="acc-cl">Golden Ocean DMCC</div>
+<div class="acc-cl">Bazelt Jewelry</div>
+<div class="acc-cl">Nawal Jewelry</div>
       </div>
     </div>
   </div>
   <div class="acc-item" id="acc-9">
     <div class="acc-hd" onclick="toggleAcc(9)">
       <div class="acc-hl">
-        <div class="acc-ico">🎓</div>
+        <div class="acc-ico" style="--acc-clr:#7C3AED">🎓</div>
         <div>
-          <div class="acc-ttl">Schools &amp; Colleges</div>
-          <div class="acc-ctr">Pakistan</div>
+          <div class="acc-ttl">Education</div>
+          <div class="acc-ctr">🇵🇰 Pakistan</div>
         </div>
       </div>
       <div class="acc-hr">
-        <span class="acc-badge">1 client</span>
+        <span class="acc-badge" style="color:#7C3AED;background:#7C3AED18;border-color:#7C3AED33">3 clients</span>
         <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
     <div class="acc-bd" id="body-9" style="display:none">
-      <div class="acc-cls" style="columns:1;column-gap:24px;">
+      <div class="acc-cls" style="columns:1;column-gap:28px;">
         <div class="acc-cl">Abassador Grammer School</div>
+<div class="acc-cl">The KIMS School and College</div>
+<div class="acc-cl">Wise Educator High School</div>
       </div>
     </div>
   </div>
   <div class="acc-item" id="acc-10">
     <div class="acc-hd" onclick="toggleAcc(10)">
       <div class="acc-hl">
-        <div class="acc-ico">🇦🇪</div>
+        <div class="acc-ico" style="--acc-clr:#1A72E8">🇦🇪</div>
         <div>
           <div class="acc-ttl">UAE Clients</div>
-          <div class="acc-ctr">UAE</div>
+          <div class="acc-ctr">🇦🇪 UAE</div>
         </div>
       </div>
       <div class="acc-hr">
-        <span class="acc-badge">12 clients</span>
+        <span class="acc-badge" style="color:#1A72E8;background:#1A72E818;border-color:#1A72E833">12 clients</span>
         <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
     <div class="acc-bd" id="body-10" style="display:none">
-      <div class="acc-cls" style="columns:2;column-gap:24px;">
+      <div class="acc-cls" style="columns:2;column-gap:28px;">
         <div class="acc-cl">White Star Sea General Trading LLC</div>
-<div class="acc-cl">Al Farabi Medical Articles &amp; Requisites Trading LLC</div>
-<div class="acc-cl">Al Sanabeel Al Thahabiya Foodstuff Trading LLC</div>
-<div class="acc-cl">Bifocal General Trading LLC</div>
-<div class="acc-cl">Hadara Hotel Management LLC</div>
-<div class="acc-cl">Tras Building Material Trading LLC</div>
-<div class="acc-cl">Blue Arrow Foodstuff Trading LLC</div>
-<div class="acc-cl">Trizone Electronic Trading LLC</div>
-<div class="acc-cl">Dapoco Furniture Trading LLC</div>
-<div class="acc-cl">Fenix Heavy Machinery &amp; Equipment Trading LLC</div>
-<div class="acc-cl">Sharp Spark General Trading LLC</div>
-<div class="acc-cl"><a href="https://saveraaintl.com/" target="_blank" class="cl-link">Saveraa International</a></div>
+        <div class="acc-cl">Al Farabi Medical Articles &amp; Requisites Trading LLC</div>
+        <div class="acc-cl">Al Sanabeel Al Thahabiya Foodstuff Trading LLC</div>
+        <div class="acc-cl">Bifocal General Trading LLC</div>
+        <div class="acc-cl">Hadara Hotel Management LLC</div>
+        <div class="acc-cl">Tras Building Material Trading LLC</div>
+        <div class="acc-cl">Blue Arrow Foodstuff Trading LLC</div>
+        <div class="acc-cl">Trizone Electronic Trading LLC</div>
+        <div class="acc-cl">Dapoco Furniture Trading LLC</div>
+        <div class="acc-cl">Fenix Heavy Machinery &amp; Equipment Trading LLC</div>
+        <div class="acc-cl">Sharp Spark General Trading LLC</div>
+        <div class="acc-cl"><a href="https://saveraaintl.com/" target="_blank" class="cl-link">Saveraa International</a></div>
       </div>
     </div>
   </div>
   <div class="acc-item" id="acc-11">
     <div class="acc-hd" onclick="toggleAcc(11)">
       <div class="acc-hl">
-        <div class="acc-ico">🇧🇭</div>
+        <div class="acc-ico" style="--acc-clr:#EF4444">🇧🇭</div>
         <div>
           <div class="acc-ttl">Bahrain Clients</div>
-          <div class="acc-ctr">Bahrain</div>
+          <div class="acc-ctr">🇧🇭 Bahrain</div>
         </div>
       </div>
       <div class="acc-hr">
-        <span class="acc-badge">2 clients</span>
+        <span class="acc-badge" style="color:#EF4444;background:#EF444418;border-color:#EF444433">2 clients</span>
         <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
     <div class="acc-bd" id="body-11" style="display:none">
-      <div class="acc-cls" style="columns:1;column-gap:24px;">
+      <div class="acc-cls" style="columns:1;column-gap:28px;">
         <div class="acc-cl">International Research Center Ltd.</div>
-<div class="acc-cl">Pacific International</div>
+        <div class="acc-cl">Pacific International</div>
       </div>
     </div>
   </div>
   <div class="acc-item" id="acc-12">
     <div class="acc-hd" onclick="toggleAcc(12)">
       <div class="acc-hl">
-        <div class="acc-ico">🇮🇳</div>
+        <div class="acc-ico" style="--acc-clr:#F59E0B">🇮🇳</div>
         <div>
           <div class="acc-ttl">Indian Companies</div>
-          <div class="acc-ctr">India</div>
+          <div class="acc-ctr">🇮🇳 India</div>
         </div>
       </div>
       <div class="acc-hr">
-        <span class="acc-badge">1 client</span>
+        <span class="acc-badge" style="color:#F59E0B;background:#F59E0B18;border-color:#F59E0B33">1 client</span>
         <svg class="acc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
     <div class="acc-bd" id="body-12" style="display:none">
-      <div class="acc-cls" style="columns:1;column-gap:24px;">
+      <div class="acc-cls" style="columns:1;column-gap:28px;">
         <div class="acc-cl"><a href="https://www.saveraco.com/" target="_blank" class="cl-link">Savera (PTE) Limited</a></div>
       </div>
     </div>
   </div>
   </div>
+
 </div>
 
 
 <!-- TEAM -->
-<div class="sec">
+<div id="team-sec" class="sec">
   <div class="sh"><span class="sh-lbl">Our Team</span><h2 class="sh-title">The People Behind Blupoint</h2><p class="sh-sub">ERP consultants, developers, and implementation specialists with hands-on industry experience.</p></div>
   <div class="tgrid2">
           <div class="tc">
@@ -2502,7 +2964,7 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
 </div>
 
 <!-- OFFICES -->
-<div class="sec sec-alt">
+<div id="sec-offices" class="sec sec-alt">
   <div class="sh"><span class="sh-lbl">Our Presence</span><h2 class="sh-title">Where to Find Us</h2><p class="sh-sub">Blupoint operates across four countries with local presence and dedicated teams.</p></div>
   <div class="ogrid">
     <div class="ocard"><div class="oflag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" style="height:26px;width:auto;border-radius:3px;display:block;"><rect width="225" height="600" fill="#fff"/><rect x="225" width="675" height="600" fill="#01411C"/><circle cx="544" cy="300" r="175" fill="#fff"/><circle cx="594" cy="280" r="140" fill="#01411C"/><polygon points="635,190 645,240 695,230 660,265 680,315 635,285 590,315 608,265 572,230 622,240" fill="#fff"/></svg><span class="oflag-lbl">Pakistan</span></div><h4>Head Office — Pakistan</h4><p>Mezzanine Floor, Office No. 67 &amp; 18c,<br>Pearl City, Main Sargodha Road,<br>Faisalabad, Pakistan.</p></div>
@@ -2512,19 +2974,79 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
 </div>
 
 <!-- CONTACT -->
-<div class="sec">
-  <div class="sh"><span class="sh-lbl">Contact</span><h2 class="sh-title">Get in Touch</h2><p class="sh-sub">Reach out to request a demo, ask about our ERP solutions, or discuss your requirements.</p></div>
-  <div class="kontact">
-    <div class="kcard"><div class="kico"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12 19.79 19.79 0 0 1 1.08 3.4 2 2 0 0 1 3.06 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><div class="klbl">Phone — Pakistan</div><div class="kval"><a href="tel:+923213544237">+92 321 354 4237</a></div></div></div>
-    <div class="kcard"><div class="kico"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12 19.79 19.79 0 0 1 1.08 3.4 2 2 0 0 1 3.06 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><div class="klbl">Phone — Saudi Arabia</div><div class="kval"><a href="tel:+966538705941">+966 53 870 5941</a></div></div></div>
-    <div class="kcard"><div class="kico"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="klbl">Email</div><div class="kval"><a href="mailto:hello@blupointai.com">hello@blupointai.com</a></div></div></div>
-    <div class="kcard"><div class="kico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div><div class="klbl">Website</div><div class="kval"><a href="https://blupointai.com" target="_blank">www.blupointai.com</a></div></div></div>
+<div id="contact-sec" class="sec">
+  <div class="sh">
+    <span class="sh-lbl">Contact</span>
+    <h2 class="sh-title">Get in Touch</h2>
+    <p class="sh-sub">Reach out to request a demo, ask about our ERP solutions, or discuss your requirements.</p>
   </div>
+
+  <!-- Contact cards — 2x2 grid -->
+  <div class="kontact">
+    <!-- Pakistan Phone -->
+    <div class="kcard">
+      <div class="kico" style="background:var(--blue-lt)">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12 19.79 19.79 0 0 1 1.08 3.4 2 2 0 0 1 3.06 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
+      <div>
+        <div class="klbl">🇵🇰 Pakistan</div>
+        <div class="kval-row">
+          <a href="tel:+923213544237" class="kval">+92 321 354 4237</a>
+          <a href="https://wa.me/923213544237" target="_blank" class="kcard-wa" title="WhatsApp"><svg viewBox="0 0 24 24" width="15" height="15" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.556 4.112 1.528 5.837L.057 23.7a.5.5 0 0 0 .611.61l5.88-1.47A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.805 9.805 0 0 1-5.031-1.38l-.36-.214-3.733.933.951-3.648-.235-.374A9.819 9.819 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg> WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- KSA Phone -->
+    <div class="kcard">
+      <div class="kico" style="background:var(--blue-lt)">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12 19.79 19.79 0 0 1 1.08 3.4 2 2 0 0 1 3.06 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
+      <div>
+        <div class="klbl">🇸🇦 Saudi Arabia</div>
+        <div class="kval-row">
+          <a href="tel:+966538705941" class="kval">+966 53 870 5941</a>
+          <a href="https://wa.me/966538705941" target="_blank" class="kcard-wa" title="WhatsApp"><svg viewBox="0 0 24 24" width="15" height="15" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.556 4.112 1.528 5.837L.057 23.7a.5.5 0 0 0 .611.61l5.88-1.47A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.805 9.805 0 0 1-5.031-1.38l-.36-.214-3.733.933.951-3.648-.235-.374A9.819 9.819 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg> WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="kcard">
+      <div class="kico" style="background:var(--blue-lt)">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <div>
+        <div class="klbl">Email</div>
+        <div class="kval"><a href="mailto:info@blupointai.com">info@blupointai.com</a></div>
+      </div>
+    </div>
+
+    <!-- Website -->
+    <div class="kcard">
+      <div class="kico" style="background:var(--blue-lt)">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
+      <div>
+        <div class="klbl">Website</div>
+        <div class="kval"><a href="https://blupointai.com" target="_blank">www.blupointai.com</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Social cards -->
   <div class="srow">
-    <a href="https://www.facebook.com/profile.php?id=61590351796106" target="_blank" class="scard fb"><div class="sico"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div><div><div class="slbl">Follow us on</div><div class="sname">Facebook</div></div></a>
-    <a href="https://www.linkedin.com/company/blupoint-ai/?viewAsMember=true" target="_blank" class="scard li"><div class="sico"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V9h4v2a6 6 0 0 1 2-2z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div><div><div class="slbl">Connect on</div><div class="sname">LinkedIn</div></div></a>
+    <a href="https://www.facebook.com/profile.php?id=61590351796106" target="_blank" class="scard fb">
+      <div class="sico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
+      <div><div class="slbl">Follow us on</div><div class="sname">Facebook</div></div>
+    </a>
+    <a href="https://www.linkedin.com/company/blupoint-ai/?viewAsMember=true" target="_blank" class="scard li">
+      <div class="sico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V9h4v2a6 6 0 0 1 2-2z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+      <div><div class="slbl">Connect on</div><div class="sname">LinkedIn</div></div>
+    </a>
   </div>
 </div>
+
 
 <!-- CTA -->
 <div class="cta">
@@ -2533,16 +3055,32 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
     <p>Book a free demo and see how Blupoint ERP brings accuracy, control, and clarity to your business.</p>
     <div class="cta-btns">
       <a href="https://blupointai.com/contact/" class="btn1">Request a Free Demo</a>
-      <a href="mailto:hello@blupointai.com" class="btn2">Email Us</a>
+      <a href="mailto:info@blupointai.com" class="btn2">Email Us</a>
     </div>
   </div>
 </div>
 
-<!-- PDF Button -->
-<button class="pdf-btn" onclick="window.print()">
-  <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-  Download PDF
-</button>
+<!-- Download Buttons -->
+<div class="dl-group">
+  <button class="dl-btn dl-pdf" onclick="window.print()" title="Save as PDF">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+    Save as PDF
+  </button>
+  <button class="dl-btn dl-html" onclick="downloadHTML()" title="Download HTML File">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Download
+  </button>
+</div>
+<script>
+function downloadHTML(){
+  var a = document.createElement('a');
+  a.href = window.location.href;
+  a.download = 'Blupoint_Company_Profile.html';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+</script>
 
 
 <!-- FOOTER -->
@@ -2582,7 +3120,7 @@ body{background:var(--bg);color:var(--body);font-size:16px;line-height:1.7;}
         <h4>Contact</h4>
         <a href="tel:+923213544237">+92 321 354 4237</a>
         <a href="tel:+966538705941">+966 53 870 5941</a>
-        <a href="mailto:hello@blupointai.com">hello@blupointai.com</a>
+        <a href="mailto:info@blupointai.com">info@blupointai.com</a>
         <a href="https://blupointai.com" target="_blank">www.blupointai.com</a>
       </div>
     </div>
@@ -2617,6 +3155,98 @@ document.addEventListener('DOMContentLoaded', function(){
     first.classList.add('open');
     document.getElementById('body-0').style.display = 'block';
   }
+});
+</script>
+
+
+<script>
+// Sticky nav scroll behavior
+(function(){
+  var nav = document.getElementById('stickyNav');
+  var lastScroll = 0;
+  window.addEventListener('scroll', function(){
+    var y = window.scrollY;
+    if(y > 80){
+      nav.classList.add('visible');
+    } else {
+      nav.classList.remove('visible');
+    }
+    lastScroll = y;
+  }, {passive:true});
+
+  // Active link highlighting
+  var links = document.querySelectorAll('.snav-link');
+  var sections = [];
+  links.forEach(function(l){
+    var href = l.getAttribute('href');
+    if(href && href !== '#'){
+      var el = document.querySelector(href);
+      if(el) sections.push({link:l, el:el});
+    }
+  });
+  window.addEventListener('scroll', function(){
+    var y = window.scrollY + 100;
+    sections.forEach(function(s){
+      var top = s.el.offsetTop;
+      var bot = top + s.el.offsetHeight;
+      if(y >= top && y < bot){
+        links.forEach(function(l){l.classList.remove('active');});
+        s.link.classList.add('active');
+      }
+    });
+  }, {passive:true});
+})();
+
+function toggleMobileNav(){
+  var m = document.getElementById('snavMobile');
+  m.classList.toggle('open');
+}
+function closeMobileNav(){
+  document.getElementById('snavMobile').classList.remove('open');
+}
+</script>
+
+
+<script>
+// ── Sticky Nav ──
+(function(){
+  var nav = document.getElementById('stickyNav');
+  var links = document.querySelectorAll('.snav-link');
+  var sections = ['about-sec','why-sec','sec-process','sec-platforms','comparison-sec','sec-testimonials','clients-sec','team-sec','sec-offices','contact-sec'];
+
+  window.addEventListener('scroll', function(){
+    // Show nav after scrolling past cover
+    if(window.scrollY > 600){
+      nav.classList.add('visible');
+    } else {
+      nav.classList.remove('visible');
+    }
+
+    // Active link highlighting
+    var current = '';
+    sections.forEach(function(id){
+      var el = document.getElementById(id);
+      if(el && el.getBoundingClientRect().top <= 100){
+        current = id;
+      }
+    });
+    links.forEach(function(link){
+      var href = link.getAttribute('href').replace('#','');
+      link.classList.toggle('active', href === current);
+    });
+  });
+})();
+
+// ── Mobile Nav Toggle ──
+function toggleMobileNav(){
+  document.getElementById('snavLinks').classList.toggle('open');
+}
+
+// Close mobile nav on link click
+document.querySelectorAll('.snav-link, .snav-cta').forEach(function(link){
+  link.addEventListener('click', function(){
+    document.getElementById('snavLinks').classList.remove('open');
+  });
 });
 </script>
 
